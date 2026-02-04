@@ -14,17 +14,17 @@ body { background-color: #f2f2f2; }
 
 .mini-header {
     padding: 20px 40px;
-    border-bottom: 3px solid #ff6000;
+    border-bottom: 3px solid #1f21c4;
 }
 
-.mini-header h1 { color: #ff6000; font-weight: 800; }
+.mini-header h1 { color: #1f21c4; font-weight: 800; }
 
 .cuerpo-flex { display: flex; padding: 30px 40px; gap: 40px; }
 
 /* Filtros */
 .sidebar-filtros { flex: 1; border-right: 1px dotted #ccc; }
 .sidebar-filtros h3 { color: #333; margin-bottom: 15px; }
-.filtro-grupo h4 { font-size: 0.9rem; margin: 15px 0 10px; color: #ff6000; }
+.filtro-grupo h4 { font-size: 0.9rem; margin: 15px 0 10px; color: #1f21c4; }
 .filtro-grupo label { display: block; margin: 8px 0; font-size: 0.85rem; cursor: pointer; }
 
 /* Grilla */
@@ -44,7 +44,7 @@ body { background-color: #f2f2f2; }
 }
 
 .tarjeta-producto:hover {
-    border-color: #ff6000;
+    border-color: #1f21c4;
     transform: scale(1.02);
 }
 
@@ -57,7 +57,7 @@ body { background-color: #f2f2f2; }
 
 .badget-promo {
     position: absolute; top: 10px; right: 10px;
-    background-color: #ff6000; color: white;
+    background-color: #1f21c4; color: white;
     padding: 3px 8px; border-radius: 4px; font-size: 0.65rem; font-weight: bold;
 }
 
@@ -70,7 +70,7 @@ body { background-color: #f2f2f2; }
 
 .btn-cesta {
     width: 100%; padding: 12px;
-    background-color: #ff6000; color: white;
+    background-color: #1f21c4; color: white;
     border: none; border-radius: 5px; font-weight: bold;
     cursor: pointer; transition: 0.3s;
 }

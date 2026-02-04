@@ -15,10 +15,10 @@ body { background-color: #f6f6f6; }
 
 .mini-header {
     padding: 20px 40px;
-    border-bottom: 2px solid #ff6000;
+    border-bottom: 2px solid #1f21c4;
 }
 
-.mini-header h1 { color: #ff6000; font-size: 2.2rem; }
+.mini-header h1 { color: #1f21c4; font-size: 2.2rem; }
 
 .breadcrumb { font-size: 0.8rem; color: #999; margin-top: 5px; }
 
@@ -52,7 +52,7 @@ body { background-color: #f6f6f6; }
 
 .tarjeta-producto:hover {
     box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    border-color: #ff6000;
+    border-color: #1f21c4;
 }
 
 /* Badgets especiales para RAM */
@@ -79,7 +79,7 @@ body { background-color: #f6f6f6; }
 .precio { font-size: 1.4rem; color: #333; font-weight: 800; margin-bottom: 15px; }
 
 .btn-cesta {
-    background-color: #ff6000;
+    background-color: #1f21c4;
     color: white; border: none; padding: 12px;
     border-radius: 5px; font-weight: bold; cursor: pointer;
     transition: 0.3s;

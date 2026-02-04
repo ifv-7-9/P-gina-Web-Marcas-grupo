@@ -22,7 +22,7 @@ body {
 .main-header {
     background-color: #fff;
     padding: 50px;
-    border-bottom: 2px solid #ff6000; /* Naranja corporativo */
+    border-bottom: 2px solid #1f21c4; /* Naranja corporativo */
 }
 
 .header-bg-overlay {
@@ -30,7 +30,7 @@ body {
     background-position: center;
     padding: 20px 20px; /* Espaciado para que se vea la imagen */
     position: relative;
-    border-bottom: 4px solid #ff6000;
+    border-bottom: 4px solid #1f21c4;
 }
 
 /* Efecto de oscurecimiento para que el título resalte */
@@ -71,7 +71,7 @@ body {
 }
 
 .search-btn {
-    background: #ff6000;
+    background: #1f21c4;
     border: none;
     padding: 0 20px;
     color: white;
@@ -87,7 +87,7 @@ body {
 }
 
 .top-bar h1 {
-    color: #ff6000;
+    color: #1f21c4;
     font-size: 2.5rem;
     font-weight: 800;
 }
@@ -137,7 +137,7 @@ body {
 }
 
 .nav-list li a:hover {
-    background-color: #ff6000;
+    background-color: #1f21c4;
 }
 
 /* Estructura del Cuerpo (Layout) */
@@ -170,7 +170,7 @@ body {
 
 /* Requisito: Cambio de color al pasar el ratón */
 .menu-secundario li a:hover {
-    background-color: #ff6000;
+    background-color: #1f21c4;
     color: #fff;
     padding-left: 20px; /* Efecto visual extra */
 }
@@ -210,12 +210,12 @@ body {
 .highlight-card {
     background-color: #fff8f0;
     padding: 20px;
-    border: 1px dashed #ff6000;
+    border: 1px dashed #1f21c4;
     border-radius: 8px;
 }
 
 .highlight-card h3 {
-    color: #ff6000;
+    color: #1f21c4;
     margin-bottom: 10px;
 }
 
@@ -229,12 +229,12 @@ body {
 }
 
 .main-footer strong {
-    color: #ff6000;
+    color: #1f21c4;
 }
 
 /* Estilo para el enlace al formulario */
 .call-to-action a {
-    color: #ff6000;
+    color: #1f21c4;
     font-weight: bold;
     text-decoration: underline;
 }

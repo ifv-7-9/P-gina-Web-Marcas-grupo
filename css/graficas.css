@@ -16,10 +16,10 @@ body { background-color: #f8f8f8; }
 .mini-header {
     padding: 25px;
     background-color: #fff;
-    border-bottom: 4px solid #ff6000;
+    border-bottom: 4px solid #1f21c4;
 }
 
-.mini-header h1 { color: #ff6000; letter-spacing: -1px; }
+.mini-header h1 { color: #1f21c4; letter-spacing: -1px; }
 
 .breadcrumb { font-size: 0.8rem; color: #aaa; margin-top: 5px; }
 
@@ -29,7 +29,7 @@ body { background-color: #f8f8f8; }
 .sidebar-filtros { flex: 1; border-right: 1px solid #f0f0f0; }
 .filtro-grupo h4 { margin-bottom: 12px; font-size: 1rem; color: #444; }
 .filtro-grupo label { display: block; margin: 10px 0; color: #666; cursor: pointer; transition: 0.2s; }
-.filtro-grupo label:hover { color: #ff6000; }
+.filtro-grupo label:hover { color: #1f21c4; }
 
 /* Catálogo */
 .catalogo { flex: 4; }
@@ -70,7 +70,7 @@ body { background-color: #f8f8f8; }
 
 .tarjeta-producto img { width: 100%; height: 180px; object-fit: contain; margin-bottom: 15px; }
 
-.marca { font-size: 0.7rem; color: #ff6000; font-weight: bold; text-transform: uppercase; }
+.marca { font-size: 0.7rem; color: #1f21c4; font-weight: bold; text-transform: uppercase; }
 
 .info h3 { font-size: 1rem; color: #333; margin: 8px 0; min-height: 48px; }
 
@@ -80,7 +80,7 @@ body { background-color: #f8f8f8; }
 
 .btn-cesta {
     width: 100%; padding: 12px;
-    background-color: #ff6000; color: #fff;
+    background-color: #1f21c4; color: #fff;
     border: none; border-radius: 6px;
     font-weight: bold; cursor: pointer; transition: 0.3s;
 }

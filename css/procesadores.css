@@ -15,10 +15,10 @@ body { background-color: #f4f4f4; }
 
 .mini-header {
     padding: 20px;
-    border-bottom: 3px solid #ff6000;
+    border-bottom: 3px solid #1f21c4;
 }
 
-.mini-header h1 { color: #ff6000; }
+.mini-header h1 { color: #1f21c4; }
 
 .breadcrumb {
     font-size: 0.85rem;
@@ -82,7 +82,7 @@ body { background-color: #f4f4f4; }
 
 .badget {
     position: absolute;
-    background: #ff6000;
+    background: #1f21c4;
     color: #fff;
     padding: 2px 8px;
     font-size: 0.7rem;
@@ -110,7 +110,7 @@ body { background-color: #f4f4f4; }
 }
 
 .precio {
-    color: #ff6000;
+    color: #1f21c4;
     font-size: 1.4rem;
     font-weight: bold;
     margin: 10px 0;
@@ -118,7 +118,7 @@ body { background-color: #f4f4f4; }
 
 .btn-cesta {
     width: 100%;
-    background-color: #ff6000;
+    background-color: #1f21c4;
     color: white;
     border: none;
     padding: 10px;
