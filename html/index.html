@@ -2,57 +2,121 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>BenchZone</title>
-    <link rel="stylesheet" href="\css\styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BenchZone | Especialistas en Hardware y Rendimiento</title>
+    <!-- Enlace al CSS del Ejercicio 2 -->
+    <link rel="stylesheet" href="..\css\style.css">
 </head>
 <body>
-    <!--Contenedor con el cuerpo del contenido-->
-    <div id="contenedor">
-        <header>
+
+    <!-- 1. Elemento contenedor global -->
+    <div id="contenedor-global">
+
+        <!-- 2. Encabezado con título y carrusel secuencial -->
+       <header class="main-header">
+    <!-- Capa de fondo informático -->
+    <div class="header-bg-overlay" style="background-image: url('../img/Fondo_BenchZone.webp');"></div>
+        <div class="top-bar">
             <h1>BenchZone</h1>
-            <!--Carrusel-->
-            <div class="carrusel">
-                <img srce="" alt="">
-                <img srce="" alt="">
-                <img srce="" alt="">
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Buscador de productos y benchmarks...">
+                <button class="search-btn">🔍</button>
+            </div>
+        </div>
+    </div>
+            
+            <!-- Carrusel de 3 imágenes relacionadas -->
+            <div class="carrusel-container">
+                <div class="carrusel-track">
+                    <figure class="carrusel-item">
+                        <img src="https://img.pccomponentes.com" alt="Novedades en Procesadores">
+                    </figure>
+                    <figure class="carrusel-item">
+                        <img src="https://img.pccomponentes.com" alt="Gráficas de Nueva Generación">
+                    </figure>
+                    <figure class="carrusel-item">
+                        <img src="https://img.pccomponentes.com" alt="Configuraciones PC Gaming">
+                    </figure>
+                </div>
             </div>
         </header>
-        <!--Menú principal-->
-        <nav class="menu-principal">
-            <ul>
-                <li><a href="" target="_blank">Inicio</a></li>
-                <li><a href="" target="_blank">Componentes</a></li>
-                <li><a href="" target="_blank">Benchmark</a></li>
-                <li><a href="" target="_blank">Contacto</a></li>
+
+        <!-- 4. Menú de navegación horizontal principal -->
+        <nav class="nav-horizontal">
+            <ul class="nav-list">
+                <li><a href=".\index.html" target="_blank">Inicio</a></li>
+                <li><a href=".\procesadores.html" target="_blank">Procesadores</a></li>
+                <li><a href=".\graficas.html" target="_blank">Tarjetas Gráficas</a></li>
+                <li><a href=".\placas.html" target="_blank">Placas Base</a></li>
+                <li><a href=".\memorias.html" target="_blank">Memoria RAM</a></li>
+                <li><a href=".\almacenamiento.html" target="_blank">Almacenamiento</a></li>
             </ul>
         </nav>
-        <!--contenido-->
-        <aside class="menu-lateral">
-            <li><a href="" target="_blank">Componentes</a></li>
-            <li><a href="" target="_blank">Ordenadores</a></li>
-            <li><a href="" target="_blank">Periféricos</a></li>
-            <li><a href="" target="_blank">Nuestras tiendas</a></li>
-        </aside>
 
+        <!-- Contenedor flexible para el cuerpo (Evita el uso de tablas) -->
+        <div class="main-layout">
+            
+            <!-- 3. Menú lateral izquierdo (con efectos hover en CSS) -->
+            <aside class="sidebar-left">
+                <nav class="menu-secundario">
+                    <h3>Explorar más</h3>
+                    <ul>
+                        <li><a href="https://www.techpowerup.com" target="_blank">Base de datos GPU</a></li>
+                        <li><a href="https://www.geekbench.com" target="_blank">Resultados Geekbench</a></li>
+                        <li><a href="https://www.3dmark.com" target="_blank">Rankings 3DMark</a></li>
+                        <li><a href="https://www.userbenchmark.com" target="_blank">Comparativas Rápidas</a></li>
+                        <li><a href="https://www.tomshardware.com" target="_blank">Noticias de Hardware</a></li>
+                    </ul>
+                </nav>
+            </aside>
 
+            <!-- 5. Sección de información principal -->
+            <section class="main-content">
+                <article class="info-article">
+                    <h2>Análisis de Rendimiento 2026</h2>
+                    
+                    <!-- Primer párrafo con enlace externo -->
+                    <p>En BenchZone nos dedicamos a exprimir cada hercio de tu equipo. Entender la arquitectura de un <a href="https://es.wikipedia.org" target="_blank">microprocesador</a> moderno es fundamental para optimizar los tiempos de carga en aplicaciones profesionales y videojuegos de alta exigencia.</p>
+                    
+                    <!-- Imagen destacada -->
+                    <div class="image-box">
+                        <img src="https://img.pccomponentes.com" alt="Componente de alta gama">
+                    </div>
 
+                    <p>A continuación, puedes visualizar nuestra guía en video sobre cómo montar un PC optimizado para benchmarks de alto nivel:</p>
 
+                    <!-- Vídeo de YouTube -->
+                    <div class="video-wrapper">
+                        <iframe width="100%" height="400" src="https://www.youtube.com" title="Guía de Hardware" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
 
+                    <div class="call-to-action">
+                        <p>¿Tienes dudas sobre tu configuración? Accede a nuestro <a href="formulario.html">formulario</a> de contacto y nuestros expertos te asesorarán personalmente.</p>
+                    </div>
+                </article>
 
+                <!-- 5b. Aside alineado a la derecha -->
+                <aside class="sidebar-right">
+                    <div class="highlight-card">
+                        <h3>Componente del mes</h3>
+                        <p><strong>NVIDIA RTX 5090</strong></p>
+                        <p>Rendimiento superior en Ray Tracing y DLSS 4.0. ¡Consíguela antes de que se agote!</p>
+                        <hr>
+                        <h4>Estado del Mercado</h4>
+                        <p>Los precios de la memoria DDR5 han bajado un 15% esta semana.</p>
+                    </div>
+                </aside>
+            </section>
+        </div>
 
+        <!-- 6. Pie de página -->
+        <footer class="main-footer">
+            <div class="footer-info">
+                <p>Copyright 2026. Página realizada por <strong> Mi equipo </strong> para el módulo de LMSGI. Todos los derechos reservados.</p>
+            </div>
+        </footer>
 
+    </div> <!-- Cierre de contenedor-global -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    </div>
+</body>
+</html>
