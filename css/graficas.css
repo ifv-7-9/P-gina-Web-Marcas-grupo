@@ -1,0 +1,90 @@
+/* Heredamos la base y personalizamos detalles */
+* {
+    margin: 0; padding: 0; box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body { background-color: #f8f8f8; }
+
+#contenedor-global {
+    max-width: 1300px;
+    margin: 0 auto;
+    background-color: #fff;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+}
+
+.mini-header {
+    padding: 25px;
+    background-color: #fff;
+    border-bottom: 4px solid #ff6000;
+}
+
+.mini-header h1 { color: #ff6000; letter-spacing: -1px; }
+
+.breadcrumb { font-size: 0.8rem; color: #aaa; margin-top: 5px; }
+
+.cuerpo-flex { display: flex; padding: 30px; gap: 30px; }
+
+/* Filtros */
+.sidebar-filtros { flex: 1; border-right: 1px solid #f0f0f0; }
+.filtro-grupo h4 { margin-bottom: 12px; font-size: 1rem; color: #444; }
+.filtro-grupo label { display: block; margin: 10px 0; color: #666; cursor: pointer; transition: 0.2s; }
+.filtro-grupo label:hover { color: #ff6000; }
+
+/* Catálogo */
+.catalogo { flex: 4; }
+.header-catalogo h2 { font-size: 1.8rem; color: #222; }
+.header-catalogo p { color: #888; margin-bottom: 30px; }
+
+.grid-productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.tarjeta-producto {
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.tarjeta-producto:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.badget-new {
+    position: absolute; top: 10px; left: 10px;
+    background: #00ca6d; color: #fff;
+    padding: 3px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: bold;
+}
+
+.badget-promo {
+    position: absolute; top: 10px; left: 10px;
+    background: #e74c3c; color: #fff;
+    padding: 3px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: bold;
+}
+
+.tarjeta-producto img { width: 100%; height: 180px; object-fit: contain; margin-bottom: 15px; }
+
+.marca { font-size: 0.7rem; color: #ff6000; font-weight: bold; text-transform: uppercase; }
+
+.info h3 { font-size: 1rem; color: #333; margin: 8px 0; min-height: 48px; }
+
+.specs { font-size: 0.85rem; color: #888; margin-bottom: 15px; }
+
+.precio { font-size: 1.5rem; font-weight: 800; color: #333; margin-bottom: 20px; }
+
+.btn-cesta {
+    width: 100%; padding: 12px;
+    background-color: #ff6000; color: #fff;
+    border: none; border-radius: 6px;
+    font-weight: bold; cursor: pointer; transition: 0.3s;
+}
+
+.btn-cesta:hover { background-color: #333; }
+
+.main-footer { padding: 40px; text-align: center; background: #fafafa; border-top: 1px solid #eee; margin-top: 50px; }

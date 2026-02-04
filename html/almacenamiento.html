@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Almacenamiento | BenchZone</title>
+    <link rel="stylesheet" href="../css/almacenamiento.css">
+</head>
+<body>
+
+    <div id="contenedor-global">
+        <header class="mini-header">
+            <div class="top-bar">
+                <a href="index.html" style="text-decoration:none;"><h1>BenchZone</h1></a>
+                <div class="breadcrumb">Inicio > Componentes > <strong>Almacenamiento</strong></div>
+            </div>
+        </header>
+
+        <div class="cuerpo-flex">
+            <aside class="sidebar-filtros">
+                <h3>Tecnología</h3>
+                <div class="filtro-grupo">
+                    <h4>Marcas</h4>
+                    <label><input type="checkbox" class="filtro" value="samsung"> Samsung</label>
+                    <label><input type="checkbox" class="filtro" value="crucial"> Crucial</label>
+                    <label><input type="checkbox" class="filtro" value="seagate"> Seagate</label>
+                </div>
+            </aside>
+
+            <main class="catalogo">
+                <div class="header-catalogo">
+                    <h2>Unidades de Almacenamiento</h2>
+                    <p>Encuentra la máxima velocidad para tus datos</p>
+                </div>
+
+                <div class="grid-productos">
+                    <div class="tarjeta-producto" data-marca="samsung">
+                        <div class="badget-speed">7450 MB/s</div>
+                        <img src="https://img.pccomponentes.com" alt="Samsung 990 Pro">
+                        <div class="info">
+                            <span class="marca">SAMSUNG</span>
+                            <h3>Samsung 990 Pro SSD 2TB PCIe 4.0 NVMe M.2</h3>
+                            <p class="specs-tecnicas">PCIe Gen 4 x4 | V-NAND</p>
+                            <p class="precio">179,00€</p>
+                            <button class="btn-cesta">Añadir</button>
+                        </div>
+                    </div>
+
+                    <div class="tarjeta-producto" data-marca="crucial">
+                        <div class="badget-promo">Calidad/Precio</div>
+                        <img src="https://img.pccomponentes.com" alt="Crucial P3 Plus">
+                        <div class="info">
+                            <span class="marca">CRUCIAL</span>
+                            <h3>Crucial P3 Plus 1TB SSD M.2 PCIe 4.0 NVMe</h3>
+                            <p class="specs-tecnicas">Velocidad 5000 MB/s</p>
+                            <p class="precio">72,99€</p>
+                            <button class="btn-cesta">Añadir</button>
+                        </div>
+                    </div>
+
+                    <div class="tarjeta-producto" data-marca="seagate">
+                        <img src="https://img.pccomponentes.com" alt="Seagate BarraCuda">
+                        <div class="info">
+                            <span class="marca">SEAGATE</span>
+                            <h3>Seagate BarraCuda 3.5" 2TB SATA 3</h3>
+                            <p class="specs-tecnicas">7200 RPM | 256MB Cache</p>
+                            <p class="precio">59,95€</p>
+                            <button class="btn-cesta">Añadir</button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <footer class="main-footer">
+            <p>Copyright 2026. Página realizada por [Tu Nombre] para el módulo de LMSGI.</p>
+        </footer>
+    </div>
+
+    <script>
+        const checkboxes = document.querySelectorAll('.filtro');
+        const productos = document.querySelectorAll('.tarjeta-producto');
+
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                const filtrosActivos = Array.from(checkboxes)
+                    .filter(i => i.checked)
+                    .map(i => i.value.toLowerCase());
+
+                productos.forEach(producto => {
+                    if (filtrosActivos.length === 0) {
+                        producto.style.display = 'flex';
+                        return;
+                    }
+
+                    const marcaProd = producto.getAttribute('data-marca')?.toLowerCase();
+                    
+                    if (filtrosActivos.includes(marcaProd)) {
+                        producto.style.display = 'flex';
+                    } else {
+                        producto.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
