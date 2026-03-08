@@ -116,6 +116,51 @@
             <p>Copyright 2026. Página realizada por <strong>Mi equipo</strong> para el módulo de LMSGI.</p>
         </footer>
 
+        <section class="grupo-productos">
+    <h2 class="titulo-gama">🚀 Gama Alta (Entusiasta)</h2>
+    <div class="grid-productos" id="contenedor-procesadores">
+        
+        <div class="producto-card gama-alta" data-marca="amd">
+            <img src="img/ryzen9.jpg" alt="Ryzen 9">
+            <h3>AMD Ryzen 9 7950X</h3>
+            <p class="precio">550€</p>
+            <button class="btn-3d btn-azul">Añadir</button>
+        </div>
+
+        <div class="producto-card gama-alta" data-marca="intel">
+            <img src="img/i9.jpg" alt="Core i9">
+            <h3>Intel Core i9-14900K</h3>
+            <p class="precio">580€</p>
+            <button class="btn-3d btn-azul">Añadir</button>
+        </div>
+   </div>
+
+<!-- Separador de productos -->
+
+</section>
+
+<hr class="separador">
+
+<section class="grupo-productos">
+    <h2 class="titulo-gama">📉 Gama Estándar (Calidad/Precio)</h2>
+    <div class="grid-productos">
+        
+        <div class="producto-card gama-baja" data-marca="amd">
+            <img src="img/ryzen5.jpg" alt="Ryzen 5">
+            <h3>AMD Ryzen 5 7600</h3>
+            <p class="precio">190€</p>
+            <button class="btn-3d btn-azul">Añadir</button>
+        </div>
+
+        <div class="producto-card gama-baja" data-marca="intel">
+            <img src="img/i5.jpg" alt="Core i5">
+            <h3>Intel Core i5-13400</h3>
+            <p class="precio">210€</p>
+            <button class="btn-3d btn-azul">Añadir</button>
+        </div>
+    </div>
+</section>
+
     </div> <script>
     // Esta función revisa si hay alguien logueado y cambia la interfaz
     function gestionarInterfaz() {
@@ -149,6 +194,25 @@
 <script>
         function abrirVideo() {
             window.open("https://www.youtube.com/embed/XPX-NUZ-zsY?si=bds0HTRjmwz0YnM8", "_blank");
+        }
+    </script>
+
+<!-- Filtrado por marca -->
+<script>
+        function filtrarMarca(marcaSeleccionada) {
+            // Seleccionamos todas las tarjetas de producto
+            const productos = document.querySelectorAll('.producto-card');
+
+            productos.forEach(producto => {
+                // Obtenemos la marca del atributo 'data-marca' que pusimos en el HTML
+                const marcaProducto = producto.getAttribute('data-marca');
+
+                if (marcaSeleccionada === 'todos' || marcaProducto === marcaSeleccionada) {
+                    producto.style.display = 'block'; // Lo mostramos
+                } else {
+                    producto.style.display = 'none';  // Lo ocultamos
+                }
+            });
         }
     </script>
 </body>
