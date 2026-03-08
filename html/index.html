@@ -1,308 +1,155 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BenchZone | Especialistas en Hardware y Rendimiento</title>
-    <!-- Enlace al CSS del Ejercicio 2 -->
-    <link rel="stylesheet" href="..\css\style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const banner = document.getElementById('banner-registro');
-        const usuarioRegistrado = localStorage.getItem('nombreUsuario');
-
-        // Si NO hay usuario guardado, mostramos el banner
-        if (!usuarioRegistrado) {
-            banner.classList.remove('hidden');
-        }
-    });
-</script>
 <body>
 
-    <!-- 1. Elemento contenedor global -->
     <div id="contenedor-global">
 
-        <!-- 2. Encabezado con título y carrusel secuencial -->
-       <header class="main-header">
-    <!-- Capa de fondo informático -->
-    <div class="header-bg-overlay" style="background-image: url('../img/Fondo_BenchZone.webp');"></div>
-        <div class="top-bar">
-            <h1>BenchZone</h1>
-            <div class="search-container">
-                <input type="text" class="search-input" placeholder="Buscador de productos y benchmarks...">
-                <button class="search-btn">🔍</button>
+        <header class="main-header">
+            <div class="header-bg-overlay" style="background-image: url('../img/Fondo_BenchZone.webp');"></div>
+            <div class="top-bar">
+                <h1>BenchZone</h1>
+
+                <!--Cierre de sesión-->
+                <div id="user-menu" style="display: inline-flex; align-items: center; gap: 15px; margin-left: 20px;">
+                    <span id="nombre-usuario" style="font-weight: bold;"></span>
+                    <button id="btn-logout" class="btn-3d btn-rojo" onclick="cerrarSesion()" style="display:none;">
+                        Cerrar Sesión
+                    </button>
+                </div>
+
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Buscador de productos y benchmarks...">
+                    <button class="search-btn">🔍</button>
+                </div>
             </div>
-        </div>
-    </div>
-            
-            <!-- Carrusel de 3 imágenes relacionadas -->
+
             <div class="carrusel-container">
                 <div class="carrusel-track">
                     <figure class="carrusel-item">
-                        <img src="https://img.pccomponentes.com" alt="Novedades en Procesadores">
+                        <img src="https://img.pccomponentes.com/articles/1081/10812324/1623-intel-core-i7-14700k-34ghz-box.jpg" alt="Procesadores">
                     </figure>
                     <figure class="carrusel-item">
-                        <img src="https://img.pccomponentes.com" alt="Gráficas de Nueva Generación">
+                        <img src="https://img.pccomponentes.com/articles/1081/10811703/1351-asus-tuf-gaming-geforce-rtx-4070-super-oc-edition-12gb-gddr6x.jpg" alt="Gráficas">
                     </figure>
                     <figure class="carrusel-item">
-                        <img src="https://img.pccomponentes.com" alt="Configuraciones PC Gaming">
+                        <img src="https://img.pccomponentes.com/articles/1073/10735824/121-msi-mag-p3-plus-ssd.jpg" alt="Configuraciones">
                     </figure>
                 </div>
             </div>
         </header>
 
-        <!-- 4. Menú de navegación horizontal principal -->
         <nav class="nav-horizontal">
             <ul class="nav-list">
-                <li><a href=".\index.html" target="_blank">Inicio</a></li>
-                <li><a href=".\procesadores.html" target="_blank">Procesadores</a></li>
-                <li><a href=".\graficas.html" target="_blank">Tarjetas Gráficas</a></li>
-                <li><a href=".\placas.html" target="_blank">Placas Base</a></li>
-                <li><a href=".\memorias.html" target="_blank">Memoria RAM</a></li>
-                <li><a href=".\almacenamiento.html" target="_blank">Almacenamiento</a></li>
-                
-                
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="procesadores.html">Procesadores</a></li>
+                <li><a href="graficas.html">Tarjetas Gráficas</a></li>
+                <li><a href="placas.html">Placas Base</a></li>
+                <li><a href="memorias.html">Memoria RAM</a></li>
+                <li><a href="almacenamiento.html">Almacenamiento</a></li>
+                <li><a href="manual.html" class="menu-destacado">Manual de Montaje</a></li>
+    
             </ul>
         </nav>
 
-        <!-- Banner del registro -->
-        <div id="banner-registro" class="banner-promo hidden">
-            <p>🚀 ¡Únete a la comunidad BenchZone y obtén un <strong>10% de descuento</strong> en tu próxima compra!</p>
-            <a href="registro.html" class="btn-banner">Conseguir mi descuento</a>
-        </div>
-
-        <!--Muestra del inicio de sesión-->
-        <div class="top-bar">
-            <a href="index.html" style="text-decoration:none;"><h1>BenchZone</h1></a>
-            <span id="nombre-usuario" style="color: #f39c12; font-weight: bold;"></span>
-    
-            <div id="user-status" class="user-info">
-                </div>
-
-            <div class="search-container">
-                <input type="text" class="search-input" placeholder="Buscador...">
-                <button class="search-btn">🔍</button>
-            </div>
-        </div>
-
-        <!-- Contenedor flexible para el cuerpo (Evita el uso de tablas) -->
-        <div class="main-layout">
+        <div class="main-layout" style="display: flex;">
             
-            <!-- 3. Menú lateral izquierdo (con efectos hover en CSS) -->
-            <aside class="sidebar-left">
+            <aside class="sidebar-left" style="flex: 1;">
                 <nav class="menu-secundario">
                     <h3>Explorar más</h3>
                     <ul>
                         <li><a href="https://www.techpowerup.com" target="_blank">Base de datos GPU</a></li>
                         <li><a href="https://www.geekbench.com" target="_blank">Resultados Geekbench</a></li>
                         <li><a href="https://www.3dmark.com" target="_blank">Rankings 3DMark</a></li>
-                        <li><a href="https://www.userbenchmark.com" target="_blank">Comparativas Rápidas</a></li>
                         <li><a href="https://www.tomshardware.com" target="_blank">Noticias de Hardware</a></li>
                     </ul>
                 </nav>
             </aside>
 
-            <!-- 5. Sección de información principal -->
-            <section class="main-content">
+            <section class="main-content" style="flex: 3; padding: 0 20px;">
                 <article class="info-article">
                     <h2>Análisis de Rendimiento 2026</h2>
+                    <p>En BenchZone nos dedicamos a exprimir cada hercio de tu equipo. Entender la arquitectura de un <a href="https://es.wikipedia.org" target="_blank">microprocesador</a> moderno es fundamental.</p>
                     
-                    <!-- Primer párrafo con enlace externo -->
-                    <p>En BenchZone nos dedicamos a exprimir cada hercio de tu equipo. Entender la arquitectura de un <a href="https://es.wikipedia.org" target="_blank">microprocesador</a> moderno es fundamental para optimizar los tiempos de carga en aplicaciones profesionales y videojuegos de alta exigencia.</p>
-                    
-                    <!-- Imagen destacada -->
-                    <div class="image-box">
-                        <img src="https://img.pccomponentes.com" alt="Componente de alta gama">
-                    </div>
-
-                    <p>A continuación, puedes visualizar nuestra guía en video sobre cómo montar un PC optimizado para benchmarks de alto nivel:</p>
-
-                    <!-- Vídeo de YouTube -->
                     <div class="video-wrapper">
-                        <iframe width="100%" height="400" src="https://www.youtube.com" title="Guía de Hardware" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe width="100%" height="400" src="https://www.youtube.com/embed/XPX-NUZ-zsY?si=bds0HTRjmwz0YnM8" title="Guía de Hardware" frameborder="0" allowfullscreen></iframe>
                     </div>
 
-                    <div class="call-to-action">
-                        <p>¿Tienes dudas sobre tu configuración? Accede a nuestro <a href="formulario.html">formulario</a> de contacto y nuestros expertos te asesorarán personalmente.</p>
+                    <div class="call-to-action" style="margin-top: 20px; background: #eee; padding: 15px;">
+                        <p>¿Tienes dudas? <a href="registro.html">Regístrate</a> para asesoría personalizada.</p>
                     </div>
                 </article>
-
-                <!-- 5b. Aside alineado a la derecha -->
-                <aside class="sidebar-right">
-                    <div class="highlight-card">
-                        <h3>Componente del mes</h3>
-                        <p><strong>NVIDIA RTX 5090</strong></p>
-                        <p>Rendimiento superior en Ray Tracing y DLSS 4.0. ¡Consíguela antes de que se agote!</p>
-                        <hr>
-                        <h4>Estado del Mercado</h4>
-                        <p>Los precios de la memoria DDR5 han bajado un 15% esta semana.</p>
-                    </div>
-                </aside>
             </section>
-        </div>
+            
+            <!-- Imagen máscara para el Video explicativo-->
 
-        <!-- 6. Pie de página -->
-        <footer class="main-footer">
-            <div class="footer-info">
-                <p>Copyright 2026. Página realizada por <strong> Mi equipo </strong> para el módulo de LMSGI. Todos los derechos reservados.</p>
+            <div class="video-wrapper-custom" onclick="abrirVideo()">
+                <div class="video-overlay" id="overlay-video">
+                    <div class="play-button">▶</div>
+                        <h3>Ver Tutorial: Montaje Paso a Paso</h3>
+                        <p>Haga clic para reproducir el video en YouTube</p>
+                </div>
+    
+                <div id="contenedor-iframe" style="display:none;">
+                    <iframe id="miVideo" width="100%" height="100%" src="https://www.youtube.com/embed/S2mmsG2mSNo?autoplay=1" frameborder="0" allowfullscreen></iframe>
+                </div>
             </div>
+
+            <aside class="sidebar-right" style="flex: 1;">
+                <div class="highlight-card">
+                    <h3>Componente del mes</h3>
+                    <p><strong>NVIDIA RTX 5090</strong></p>
+                    <p>Rendimiento superior en Ray Tracing.</p>
+                    <hr>
+                    <h4>Estado del Mercado</h4>
+                    <p>DDR5 ha bajado un 15%.</p>
+                </div>
+            </aside>
+        </div>
+       
+        <footer class="main-footer">
+            <p>Copyright 2026. Página realizada por <strong>Mi equipo</strong> para el módulo de LMSGI.</p>
         </footer>
 
-    </div> <!-- Cierre de contenedor-global -->
-    <script>
-    // Cogemos el nombre guardado y lo ponemos en el HTML
-        const nombre = localStorage.getItem('nombreUsuario');
-        if (nombre) {
-            document.getElementById('nombre-usuario').innerText = "Hola, " + nombre;
+    </div> <script>
+    // Esta función revisa si hay alguien logueado y cambia la interfaz
+    function gestionarInterfaz() {
+        const usuario = localStorage.getItem('nombreUsuario');
+        const span = document.getElementById('nombre-usuario');
+        const boton = document.getElementById('btn-logout');
+
+        if (usuario) {
+            // Si hay usuario: Mostramos "Hola, Nombre" y el botón de cerrar
+            span.innerText = "Hola, " + usuario;
+            boton.style.display = "inline-block";
+        } else {
+            // Aquí creamos el botón azul 3D para iniciar sesión
+            span.innerHTML = '<a href="registro.html" class="btn-3d btn-azul">Iniciar Sesión</a>';
+            botonLogout.style.display = "none";
+        }
+    }
+
+    // Esta función borra el nombre y "limpia" la página
+    function cerrarSesion() {
+        localStorage.removeItem('nombreUsuario');
+        alert("Sesión cerrada.");
+        gestionarInterfaz(); // Volvemos a chequear para que desaparezca el nombre
+    }
+
+    // Importante: Ejecutar nada más cargar la página
+    window.onload = gestionarInterfaz;
+</script>
+
+<!--Funcion para abrir el video-->
+<script>
+        function abrirVideo() {
+            window.open("https://www.youtube.com/embed/XPX-NUZ-zsY?si=bds0HTRjmwz0YnM8", "_blank");
         }
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    </div>
-=======
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BenchZone | Especialistas en Hardware y Rendimiento</title>
-    <!-- Enlace al CSS del Ejercicio 2 -->
-    <link rel="stylesheet" href="..\css\style.css">
-</head>
-<body>
-
-    <!-- 1. Elemento contenedor global -->
-    <div id="contenedor-global">
-
-        <!-- 2. Encabezado con título y carrusel secuencial -->
-       <header class="main-header">
-    <!-- Capa de fondo informático -->
-    <div class="header-bg-overlay" style="background-image: url('../img/Fondo_BenchZone.webp');"></div>
-        <div class="top-bar">
-            <h1>BenchZone</h1>
-            <div class="search-container">
-                <input type="text" class="search-input" placeholder="Buscador de productos y benchmarks...">
-                <button class="search-btn">🔍</button>
-            </div>
-        </div>
-    </div>
-            
-            <!-- Carrusel de 3 imágenes relacionadas -->
-            <div class="carrusel-container">
-                <div class="carrusel-track">
-                    <figure class="carrusel-item">
-                        <img src="https://img.pccomponentes.com" alt="Novedades en Procesadores">
-                    </figure>
-                    <figure class="carrusel-item">
-                        <img src="https://img.pccomponentes.com" alt="Gráficas de Nueva Generación">
-                    </figure>
-                    <figure class="carrusel-item">
-                        <img src="https://img.pccomponentes.com" alt="Configuraciones PC Gaming">
-                    </figure>
-                </div>
-            </div>
-        </header>
-
-        <!-- 4. Menú de navegación horizontal principal -->
-        <nav class="nav-horizontal">
-            <ul class="nav-list">
-                <li><a href=".\index.html" target="_blank">Inicio</a></li>
-                <li><a href=".\procesadores.html" target="_blank">Procesadores</a></li>
-                <li><a href=".\graficas.html" target="_blank">Tarjetas Gráficas</a></li>
-                <li><a href=".\placas.html" target="_blank">Placas Base</a></li>
-                <li><a href=".\memorias.html" target="_blank">Memoria RAM</a></li>
-                <li><a href=".\almacenamiento.html" target="_blank">Almacenamiento</a></li>
-            </ul>
-        </nav>
-
-        <!-- Contenedor flexible para el cuerpo (Evita el uso de tablas) -->
-        <div class="main-layout">
-            
-            <!-- 3. Menú lateral izquierdo (con efectos hover en CSS) -->
-            <aside class="sidebar-left">
-                <nav class="menu-secundario">
-                    <h3>Explorar más</h3>
-                    <ul>
-                        <li><a href="https://www.techpowerup.com" target="_blank">Base de datos GPU</a></li>
-                        <li><a href="https://www.geekbench.com" target="_blank">Resultados Geekbench</a></li>
-                        <li><a href="https://www.3dmark.com" target="_blank">Rankings 3DMark</a></li>
-                        <li><a href="https://www.userbenchmark.com" target="_blank">Comparativas Rápidas</a></li>
-                        <li><a href="https://www.tomshardware.com" target="_blank">Noticias de Hardware</a></li>
-                    </ul>
-                </nav>
-            </aside>
-
-            <!-- 5. Sección de información principal -->
-            <section class="main-content">
-                <article class="info-article">
-                    <h2>Análisis de Rendimiento 2026</h2>
-                    
-                    <!-- Primer párrafo con enlace externo -->
-                    <p>En BenchZone nos dedicamos a exprimir cada hercio de tu equipo. Entender la arquitectura de un <a href="https://es.wikipedia.org" target="_blank">microprocesador</a> moderno es fundamental para optimizar los tiempos de carga en aplicaciones profesionales y videojuegos de alta exigencia.</p>
-                    
-                    <!-- Imagen destacada -->
-                    <div class="image-box">
-                        <img src="https://img.pccomponentes.com" alt="Componente de alta gama">
-                    </div>
-
-                    <p>A continuación, puedes visualizar nuestra guía en video sobre cómo montar un PC optimizado para benchmarks de alto nivel:</p>
-
-                    <!-- Vídeo de YouTube -->
-                    <div class="video-wrapper">
-                        <iframe width="100%" height="400" src="https://www.youtube.com" title="Guía de Hardware" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-
-                    <div class="call-to-action">
-                        <p>¿Tienes dudas sobre tu configuración? Accede a nuestro <a href="formulario.html">formulario</a> de contacto y nuestros expertos te asesorarán personalmente.</p>
-                    </div>
-                </article>
-
-                <!-- 5b. Aside alineado a la derecha -->
-                <aside class="sidebar-right">
-                    <div class="highlight-card">
-                        <h3>Componente del mes</h3>
-                        <p><strong>NVIDIA RTX 5090</strong></p>
-                        <p>Rendimiento superior en Ray Tracing y DLSS 4.0. ¡Consíguela antes de que se agote!</p>
-                        <hr>
-                        <h4>Estado del Mercado</h4>
-                        <p>Los precios de la memoria DDR5 han bajado un 15% esta semana.</p>
-                    </div>
-                </aside>
-            </section>
-        </div>
-
-        <!-- 6. Pie de página -->
-        <footer class="main-footer">
-            <div class="footer-info">
-                <p>Copyright 2026. Página realizada por <strong> Mi equipo </strong> para el módulo de LMSGI. Todos los derechos reservados.</p>
-            </div>
-        </footer>
-
-    </div> <!-- Cierre de contenedor-global -->
-
-</body>
-</html>
->>>>>>> 7ceac38ca8d0d6711daa15878ba531356de7f0ae

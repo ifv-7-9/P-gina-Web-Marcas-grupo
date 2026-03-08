@@ -24,6 +24,8 @@ body {
     background-color: #fff;
     padding: 50px;
     border-bottom: 2px solid #1f21c4; /* Naranja corporativo */
+    position: relative; /* ¡Añade esto! */
+    z-index: 10000;      /* Un nivel más que el menú */
 }
 
 .header-bg-overlay {
@@ -120,6 +122,9 @@ body {
 /* 4. Menú Horizontal */
 .nav-horizontal {
     background-color: #333;
+    position: relative; /* ¡CLAVE! Permite que el z-index funcione */
+    z-index: 9999;      /* Un número muy alto para ganar a cualquier otro elemento */
+    width: 100%;        /* Asegura que cubra todo el ancho */
 }
 
 .nav-list {
@@ -295,245 +300,239 @@ body {
     background: #f39c12;
     color: #1a1a1a;
 }
-=======
-/* Configuración General */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+/* Estilo base para botones 3D */
+.btn-3d {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.1s ease;
+    text-transform: uppercase;
+    font-size: 0.8em;
 }
 
-body {
-    background-color: #f4f4f4; /* Gris claro de fondo */
-    color: #333;
+/* Botón Rojo (Cerrar Sesión) */
+.btn-rojo {
+    background-color: #e74c3c;
+    box-shadow: 0 4px 0 #c0392b; /* La "base" del botón */
 }
 
-#contenedor-global {
-    max-width: 1300px;
-    margin: 0 auto;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+.btn-rojo:hover {
+    background-color: #ff5e4d;
 }
 
-/* 2. Encabezado y Carrusel */
-.main-header {
-    background-color: #fff;
-    padding: 50px;
-    border-bottom: 2px solid #1f21c4; /* Naranja corporativo */
+/* Botón Azul (Iniciar Sesión) */
+.btn-azul {
+    background-color: #3498db;
+    box-shadow: 0 4px 0 #2980b9;
 }
 
-.header-bg-overlay {
-    background-size: cover;
-    background-position: center;
-    padding: 20px 20px; /* Espaciado para que se vea la imagen */
+.btn-azul:hover {
+    background-color: #5dade2;
+}
+
+/* Efecto de "Hundirse" al hacer clic */
+.btn-3d:active {
+    box-shadow: 0 0 0 #c0392b; /* Desaparece la sombra */
+    transform: translateY(4px); /* El botón baja 4px */
+}
+
+/* Contenedor principal del manual */
+.descarga-card {
     position: relative;
-    border-bottom: 4px solid #1f21c4;
-}
-
-/* Efecto de oscurecimiento para que el título resalte */
-.header-bg-overlay::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0, 0, 0, 0.5); /* Filtro oscuro */
+    background: #1a1a1a; /* Fondo oscuro tipo gaming */
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border: 1px solid #333;
+    text-align: center;
+    margin: 20px 0;
     z-index: 1;
 }
 
-.top-bar {
+/* Efecto de borde brillante animado */
+.descarga-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg, transparent, #f39c12, #e67e22, transparent 60%);
+    animation: rotarBorde 4s linear infinite;
+    z-index: -1;
+}
+
+/* Interior de la tarjeta para tapar el centro del degradado */
+.descarga-card::after {
+    content: '';
+    position: absolute;
+    inset: 4px; /* Grosor del borde */
+    background: #1a1a1a;
+    border-radius: 11px;
+    z-index: -1;
+}
+
+/* Animación de rotación */
+@keyframes rotarBorde {
+    100% { transform: rotate(360deg); }
+}
+
+/* Efecto al pasar el ratón */
+.descarga-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(243, 156, 18, 0.3);
+}
+
+/* Estilo del botón dentro de la card */
+.btn-manual {
+    display: inline-block;
+    background: linear-gradient(45deg, #f39c12, #d35400);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.3s;
+    border: none;
+    box-shadow: 0 4px 15px rgba(243, 156, 18, 0.4);
+}
+
+.btn-manual:hover {
+    box-shadow: 0 6px 20px rgba(243, 156, 18, 0.6);
+    filter: brightness(1.1);
+}
+
+/* Contenedor del video responsivo */
+.video-zone-wrapper {
+    max-width: 800px;
+    margin: 40px auto;
+    background: #111;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(243, 156, 18, 0.2);
+    border: 1px solid #333;
+}
+
+.video-container {
     position: relative;
-    z-index: 2; /* Por encima del filtro oscuro */
+    padding-bottom: 56.25%; /* Proporción 16:9 */
+    height: 0;
+    overflow: hidden;
+    border-radius: 10px;
+    background: #000;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Botón de enlace directo */
+.btn-youtube-direct {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #ff0000; /* Color oficial YouTube */
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.btn-youtube-direct:hover {
+    background: #cc0000;
+    transform: scale(1.05);
+}
+
+.video-wrapper-custom {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    height: 450px;
+    margin: 20px auto;
+    background-image: url('https://images.unsplash.com/photo-1587202372775-e229f172b9d7?q=80&w=1000&auto=format&fit=crop'); /* Puedes usar una imagen tuya */
+    background-size: cover;
+    background-position: center;
+    border-radius: 15px;
+    cursor: pointer;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.video-overlay {
+    background: rgba(0, 0, 0, 0.6); /* Oscurece un poco la imagen */
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
-}
-
-.top-bar h1 {
-    color: #ffffff;
-    font-size: 3.5rem;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
-}
-
-.search-container {
-    display: flex;
-    width: 100%;
-    max-width: 600px;
-}
-
-.search-input {
-    flex: 1;
-    padding: 12px;
-    border: none;
-    border-radius: 4px 0 0 4px;
-}
-
-.search-btn {
-    background: #1f21c4;
-    border: none;
-    padding: 0 20px;
-    color: white;
-    border-radius: 0 4px 4px 0;
-    cursor: pointer;
-}
-
-.top-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.top-bar h1 {
-    color: #1f21c4;
-    font-size: 2.5rem;
-    font-weight: 800;
-}
-
-.carrusel-container {
-    width: 100%;
-    overflow: hidden;
-    border-radius: 8px;
-}
-
-.carrusel-track {
-    display: flex;
-    animation: slide 15s infinite; /* Movimiento secuencial */
-}
-
-.carrusel-item img {
-    width: 1300px; /* Ajustado al contenedor */
-    height: 350px;
-    object-fit: cover;
-}
-
-@keyframes slide {
-    0% { transform: translateX(0); }
-    33% { transform: translateX(-100%); }
-    66% { transform: translateX(-200%); }
-    100% { transform: translateX(0); }
-}
-
-/* 4. Menú Horizontal */
-.nav-horizontal {
-    background-color: #333;
-}
-
-.nav-list {
-    list-style: none;
-    display: flex;
     justify-content: center;
+    transition: 0.3s;
+    color: white;
 }
 
-.nav-list li a {
-    display: block;
-    padding: 15px 25px;
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background 0.3s;
+.video-overlay:hover {
+    background: rgba(0, 0, 0, 0.4);
 }
 
-.nav-list li a:hover {
-    background-color: #1f21c4;
-}
-
-/* Estructura del Cuerpo (Layout) */
-.main-layout {
-    display: flex; /* Alineación horizontal de menús y contenido */
-    padding: 20px;
-    gap: 20px;
-}
-
-/* 3. Menú Lateral Izquierdo */
-.sidebar-left {
-    flex: 1;
-    min-width: 220px;
-}
-
-.menu-secundario ul {
-    list-style: none;
-}
-
-.menu-secundario li a {
-    display: block;
-    padding: 12px;
-    margin-bottom: 5px;
-    background-color: #eee;
-    color: #333;
-    text-decoration: none;
-    border-radius: 4px;
-    transition: all 0.3s ease; /* Transición suave */
-}
-
-/* Requisito: Cambio de color al pasar el ratón */
-.menu-secundario li a:hover {
-    background-color: #1f21c4;
-    color: #fff;
-    padding-left: 20px; /* Efecto visual extra */
-}
-
-/* 5. Sección de Contenido Central */
-.main-content {
-    flex: 3;
+.play-button {
+    width: 80px;
+    height: 80px;
+    background: #f39c12;
+    border-radius: 50%;
     display: flex;
-    gap: 20px;
-}
-
-.info-article {
-    flex: 2;
-}
-
-.info-article h2 {
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
     margin-bottom: 15px;
-    color: #222;
+    box-shadow: 0 0 20px rgba(243, 156, 18, 0.6);
+    transition: 0.3s;
 }
 
-.image-box img {
-    width: 100%;
-    border-radius: 8px;
-    margin: 20px 0;
+.video-wrapper-custom:hover .play-button {
+    transform: scale(1.1);
+    background: #e67e22;
 }
 
-.video-wrapper {
-    margin: 20px 0;
-    border: 3px solid #eee;
-}
 
-/* Aside alineado a la derecha */
-.sidebar-right {
-    flex: 1;
-}
-
-.highlight-card {
-    background-color: #fff8f0;
-    padding: 20px;
-    border: 1px dashed #1f21c4;
-    border-radius: 8px;
-}
-
-.highlight-card h3 {
-    color: #1f21c4;
-    margin-bottom: 10px;
-}
-
-/* 6. Pie de página */
-.main-footer {
-    background-color: #222;
+/* Estilo especial para el botón del manual en el menú */
+.nav-list li a.menu-destacado {
+    background-color: #f39c12; /* Naranja para que llame la atención */
     color: #fff;
-    text-align: center;
-    padding: 30px;
-    margin-top: 20px;
+    border-radius: 4px;
+    margin-left: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-.main-footer strong {
-    color: #1f21c4;
+.nav-list li a.menu-destacado:hover {
+    background-color: #e67e22;
+    transform: scale(1.05);
 }
 
-/* Estilo para el enlace al formulario */
-.call-to-action a {
-    color: #1f21c4;
-    font-weight: bold;
-    text-decoration: underline;
+/* Arreglo final para la barra horizontal (para que no se tape nunca más) */
+.nav-horizontal {
+    position: relative;
+    z-index: 9999 !important;
+    display: block;
+    clear: both;
 }
->>>>>>> 7ceac38ca8d0d6711daa15878ba531356de7f0ae
