@@ -90,95 +90,117 @@ body { background-color: #f8f8f8; }
 
 .main-footer { padding: 40px; text-align: center; background: #fafafa; border-top: 1px solid #eee; margin-top: 50px; }
 
-=======
-/* Heredamos la base y personalizamos detalles */
-* {
-    margin: 0; padding: 0; box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* Estructura Principal */
+.cuerpo-flex {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    align-items: flex-start;
 }
 
-body { background-color: #f8f8f8; }
-
-#contenedor-global {
-    max-width: 1300px;
-    margin: 0 auto;
-    background-color: #fff;
-    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+/* Menú Lateral */
+.sidebar-filtros {
+    flex: 0 0 250px;
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
 }
 
-.mini-header {
-    padding: 25px;
-    background-color: #fff;
-    border-bottom: 4px solid #1f21c4;
+.filtro-grupo {
+    margin-bottom: 20px;
 }
 
-.mini-header h1 { color: #1f21c4; letter-spacing: -1px; }
+.filtro-grupo h4 {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+}
 
-.breadcrumb { font-size: 0.8rem; color: #aaa; margin-top: 5px; }
+.filtro-grupo label {
+    display: block;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
 
-.cuerpo-flex { display: flex; padding: 30px; gap: 30px; }
-
-/* Filtros */
-.sidebar-filtros { flex: 1; border-right: 1px solid #f0f0f0; }
-.filtro-grupo h4 { margin-bottom: 12px; font-size: 1rem; color: #444; }
-.filtro-grupo label { display: block; margin: 10px 0; color: #666; cursor: pointer; transition: 0.2s; }
-.filtro-grupo label:hover { color: #1f21c4; }
-
-/* Catálogo */
-.catalogo { flex: 4; }
-.header-catalogo h2 { font-size: 1.8rem; color: #222; }
-.header-catalogo p { color: #888; margin-bottom: 30px; }
+/* Catálogo y Grid */
+.catalogo {
+    flex: 1;
+}
 
 .grid-productos {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 25px;
+    margin-bottom: 40px;
 }
 
+/* La Tarjeta de Producto */
 .tarjeta-producto {
-    border: 1px solid #f0f0f0;
-    border-radius: 12px;
-    padding: 20px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 15px;
     text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
-    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .tarjeta-producto:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
-.badget-new {
-    position: absolute; top: 10px; left: 10px;
-    background: #00ca6d; color: #fff;
-    padding: 3px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: bold;
+.tarjeta-producto img {
+    max-width: 100%;
+    height: 180px;
+    object-fit: contain;
+    margin-bottom: 15px;
 }
 
-.badget-promo {
-    position: absolute; top: 10px; left: 10px;
-    background: #e74c3c; color: #fff;
-    padding: 3px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: bold;
+/* Badgets (Etiquetas de Novedad/Oferta) */
+.badget-new, .badget-promo {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: white;
 }
 
-.tarjeta-producto img { width: 100%; height: 180px; object-fit: contain; margin-bottom: 15px; }
+.badget-new { background: #27ae60; }
+.badget-promo { background: #e74c3c; }
 
-.marca { font-size: 0.7rem; color: #1f21c4; font-weight: bold; text-transform: uppercase; }
+/* Tipografía y Botones */
+.info h3 {
+    font-size: 1.1rem;
+    margin: 10px 0;
+    height: 3em; /* Para que todos los títulos ocupen lo mismo */
+    overflow: hidden;
+}
 
-.info h3 { font-size: 1rem; color: #333; margin: 8px 0; min-height: 48px; }
-
-.specs { font-size: 0.85rem; color: #888; margin-bottom: 15px; }
-
-.precio { font-size: 1.5rem; font-weight: 800; color: #333; margin-bottom: 20px; }
+.precio {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #1f21c4;
+    margin: 10px 0;
+}
 
 .btn-cesta {
-    width: 100%; padding: 12px;
-    background-color: #1f21c4; color: #fff;
-    border: none; border-radius: 6px;
-    font-weight: bold; cursor: pointer; transition: 0.3s;
+    background: #1f21c4;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
 }
 
-.btn-cesta:hover { background-color: #333; }
-
-.main-footer { padding: 40px; text-align: center; background: #fafafa; border-top: 1px solid #eee; margin-top: 50px; }
->>>>>>> 7ceac38ca8d0d6711daa15878ba531356de7f0ae
+.btn-cesta:hover {
+    background: #3a3df5;
+}
