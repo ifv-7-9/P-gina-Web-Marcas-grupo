@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro | BenchZone</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* Estilos específicos para esta página */
+        .registro-container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 30px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .form-registro {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .form-registro input {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        .btn-registro {
+            background-color: #f39c12;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-registro:hover {
+            background-color: #e67e22;
+        }
+        .promo-box {
+            display: none; /* Oculto por defecto */
+            background: #e1f5fe;
+            border: 2px dashed #0288d1;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+        .descuento-codigo {
+            font-size: 1.5em;
+            color: #d32f2f;
+            font-weight: bold;
+            margin: 10px 0;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="contenedor-global">
+        <header class="mini-header">
+            <div class="top-bar">
+                <a href="index.html" style="text-decoration:none;"><h1>BenchZone</h1></a>
+                <span id="nombre-usuario" style="color: #f39c12; font-weight: bold; margin-left: 15px;"></span>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="registro-container">
+                <div id="seccion-formulario">
+                    <h2>Únete a BenchZone</h2>
+                    <p>Regístrate para obtener beneficios exclusivos y benchmarks personalizados.</p>
+                    
+                    <form id="miFormulario" class="form-registro">
+                        <input type="text" id="campo-nombre" placeholder="Nombre completo" required>
+                        <input type="email" id="campo-email" placeholder="Correo electrónico" required>
+                        <input type="password" placeholder="Contraseña" required>
+                        
+                        <button type="button" class="btn-registro" onclick="ejecutarRegistro()">Crear cuenta</button>
+                    </form>
+                </div>
+
+                <div id="seccion-exito" class="promo-box">
+                    <h2 style="color: #0288d1;">¡Bienvenido/a a la élite del hardware!</h2>
+                    <p>Como nuevo miembro, tienes un 10% de descuento en tu primera compra:</p>
+                    <span class="descuento-codigo">CÓDIGO: BENCH2026</span>
+                    <p><small>Válido para tarjetas gráficas y procesadores.</small></p>
+                    <br>
+                    <a href="index.html" style="color: #1e3c72; font-weight: bold;">Volver al inicio</a>
+                </div>
+            </div>
+        </main>
+
+        <footer class="main-footer">
+            <p>Copyright 2026. Página realizada para el módulo de LMSGI.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Función que se activa al hacer clic en el botón
+        function ejecutarRegistro() {
+            const nombre = document.getElementById('campo-nombre').value;
+            const email = document.getElementById('campo-email').value;
+
+            if (nombre === "" || email === "") {
+                alert("Por favor, rellena los campos básicos.");
+                return;
+            }
+
+            // 1. Guardamos el nombre en el navegador
+            localStorage.setItem('nombreUsuario', nombre);
+
+            // 2. Ocultamos el formulario y mostramos el descuento
+            document.getElementById('seccion-formulario').style.display = 'none';
+            document.getElementById('seccion-exito').style.display = 'block';
+
+            // 3. Actualizamos el nombre en la barra superior al momento
+            document.getElementById('nombre-usuario').innerText = "Hola, " + nombre;
+        }
+
+        // Al cargar la página, comprobar si ya estaba registrado
+        window.onload = function() {
+            const guardado = localStorage.getItem('nombreUsuario');
+            if (guardado) {
+                document.getElementById('seccion-formulario').style.display = 'none';
+                document.getElementById('seccion-exito').style.display = 'block';
+                document.getElementById('nombre-usuario').innerText = "Hola, " + guardado;
+            }
+        };
+    </script>
+
+</body>
+</html>
