@@ -32,38 +32,38 @@
                 </div>
 
                 <h3 style="margin: 20px 0; color: #1f21c4;"> Gama Alta</h3>
-                <div class="grid-productos">
-                    <div class="tarjeta-producto" data-marca="amd">
-                        <div class="badget">TOP</div>
-                        <img src="https://img.pccomponentes.com/articles/1066/10665103/1500-amd-ryzen-7-7800x3d-42-ghz-5-ghz-caracteristicas.jpg" alt="AMD Ryzen 7">
-                        <div class="info">
-                            <span class="marca">AMD</span>
-                            <h3>AMD Ryzen 7 7800X3D</h3>
-                            <p class="precio">389,00€</p>
-                            <button class="btn-cesta">Añadir al carrito</button>
-                        </div>
-                    </div>
+<div class="grid-productos">
+    <div class="tarjeta-producto" data-marca="amd" data-gama="alta">
+        <div class="badget">TOP</div>
+        <img src="https://img.pccomponentes.com/articles/1066/10665103/1500-amd-ryzen-7-7800x3d-42-ghz-5-ghz-caracteristicas.jpg" alt="AMD Ryzen 7">
+        <div class="info">
+            <span class="marca">AMD</span>
+            <h3>AMD Ryzen 7 7800X3D</h3>
+            <p class="precio">389,00€</p>
+            <button class="btn-cesta">Añadir al carrito</button>
+        </div>
+    </div>
 
-                    <div class="tarjeta-producto" data-marca="intel">
-                        <img src="https://img.pccomponentes.com/articles/1077/10779177/1139-intel-core-i9-14900k-32-6ghz-box.jpg" alt="Intel Core i9">
-                        <div class="info">
-                            <span class="marca">INTEL</span>
-                            <h3>Intel Core i9-14900K</h3>
-                            <p class="precio">615,90€</p>
-                            <button class="btn-cesta">Añadir al carrito</button>
-                        </div>
-                    </div>
+    <div class="tarjeta-producto" data-marca="intel" data-gama="alta">
+        <img src="https://img.pccomponentes.com/articles/1077/10779177/1139-intel-core-i9-14900k-32-6ghz-box.jpg" alt="Intel Core i9">
+        <div class="info">
+            <span class="marca">INTEL</span>
+            <h3>Intel Core i3-14900K</h3>
+            <p class="precio">615,90€</p>
+            <button class="btn-cesta">Añadir al carrito</button>
+        </div>
+    </div>
 
-                    <div class="tarjeta-producto" data-marca="amd">
-                        <img src="https://img.pccomponentes.com/articles/1066/10665099/1332-amd-ryzen-9-7950x3d-42-ghz-57-ghz.jpg" alt="AMD Ryzen 9">
-                        <div class="info">
-                            <span class="marca">AMD</span>
-                            <h3>AMD Ryzen 9 7950X3D</h3>
-                            <p class="precio">650,22€</p>
-                            <button class="btn-cesta">Añadir al carrito</button>
-                        </div>
-                    </div>
-                </div>
+    <div class="tarjeta-producto" data-marca="amd" data-gama="alta">
+        <img src="https://img.pccomponentes.com/articles/1066/10665099/1332-amd-ryzen-9-7950x3d-42-ghz-57-ghz.jpg" alt="AMD Ryzen 9">
+        <div class="info">
+            <span class="marca">AMD</span>
+            <h3>AMD Ryzen 9 7950X3D</h3>
+            <p class="precio">650,22€</p>
+            <button class="btn-cesta">Añadir al carrito</button>
+        </div>
+    </div>
+</div>
 
                 <h3 style="margin: 40px 0 20px; color: #1f21c4;">Gama Estándar</h3>
                 <div class="grid-productos">
@@ -125,5 +125,65 @@
         });
     });
 </script>
+
+<script>
+    // 1. Lógica de Filtros (Tu código original mejorado)
+    document.addEventListener('change', function() {
+        const seleccionados = Array.from(document.querySelectorAll('.filtro-marca:checked'))
+                                   .map(cb => cb.value.toLowerCase());
+        
+        const productos = document.querySelectorAll('.tarjeta-producto');
+
+        productos.forEach(producto => {
+            const marca = producto.getAttribute('data-marca').toLowerCase();
+            if (seleccionados.length === 0 || seleccionados.includes(marca)) {
+                producto.style.display = 'block'; 
+            } else {
+                producto.style.display = 'none';
+            }
+        });
+    });
+
+    // 2. Lógica de Descuento (Nueva)
+    function aplicarDescuentoUsuario() {
+        const usuarioLogueado = localStorage.getItem('nombreUsuario');
+        
+        if (usuarioLogueado) {
+            // Buscamos solo los que tienen el atributo data-gama="alta"
+            const productosAltaGama = document.querySelectorAll('.tarjeta-producto[data-gama="alta"]');
+
+            productosAltaGama.forEach(producto => {
+                const elementoPrecio = producto.querySelector('.precio');
+                
+                // Convertimos el texto "389,00€" a número usable
+                let textoLimpio = elementoPrecio.innerText.replace('€', '').replace('.', '').replace(',', '.');
+                let precioOriginal = parseFloat(textoLimpio);
+                
+                // Cálculo del 10% de descuento
+                let precioDescuento = precioOriginal * 0.90;
+
+                // Actualizamos el diseño del precio
+                elementoPrecio.innerHTML = `
+                    <span style="text-decoration: line-through; color: #999; font-size: 0.85em;">${precioOriginal.toFixed(2).replace('.', ',')}€</span> 
+                    <span style="color: #e67e22; font-weight: bold; margin-left: 8px;">${precioDescuento.toFixed(2).replace('.', ',')}€</span>
+                `;
+                
+                // Opcional: añadir una etiqueta de "Oferta Socio"
+                const infoDiv = producto.querySelector('.info');
+                const tagSocio = document.createElement('small');
+                tagSocio.innerText = "¡Precio especial socio!";
+                tagSocio.style.color = "#27ae60";
+                tagSocio.style.display = "block";
+                infoDiv.insertBefore(tagSocio, elementoPrecio);
+            });
+        }
+    }
+
+    // Ejecutar al cargar la página
+    window.onload = aplicarDescuentoUsuario;
+</script>
+
+// Ejecutar la función al cargar la página
+window.addEventListener('load', aplicarDescuentoUsuario);
 </body>
 </html>

@@ -1,12 +1,10 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Almacenamiento | BenchZone</title>
-    <link rel="stylesheet" href="../css/almacenamiento.css">
-</head>
+    <link rel="stylesheet" href="..\css\procesadores.css"> </head>
 <body>
 
     <div id="contenedor-global">
@@ -19,54 +17,72 @@
 
         <div class="cuerpo-flex">
             <aside class="sidebar-filtros">
-                <h3>Tecnología</h3>
+                <h3>Filtrar por</h3>
+                
                 <div class="filtro-grupo">
-                    <h4>Marcas</h4>
-                    <label><input type="checkbox" class="filtro" value="samsung"> Samsung</label>
-                    <label><input type="checkbox" class="filtro" value="crucial"> Crucial</label>
-                    <label><input type="checkbox" class="filtro" value="seagate"> Seagate</label>
+                    <h4>Marca</h4>
+                    <label><input type="checkbox" class="filtro-check" data-tipo="marca" value="samsung"> Samsung</label>
+                    <label><input type="checkbox" class="filtro-check" data-tipo="marca" value="wd"> WD</label>
+                    <label><input type="checkbox" class="filtro-check" data-tipo="marca" value="crucial"> Crucial</label>
+                    <label><input type="checkbox" class="filtro-check" data-tipo="marca" value="seagate"> Seagate</label>
+                </div>
+
+                <div class="filtro-grupo">
+                    <h4>Tecnología</h4>
+                    <label><input type="checkbox" class="filtro-check" data-tipo="tech" value="ssd"> SSD NVMe</label>
+                    <label><input type="checkbox" class="filtro-check" data-tipo="tech" value="sata"> SSD SATA</label>
+                    <label><input type="checkbox" class="filtro-check" data-tipo="tech" value="hdd"> HDD Mecánico</label>
                 </div>
             </aside>
 
             <main class="catalogo">
                 <div class="header-catalogo">
-                    <h2>Unidades de Almacenamiento</h2>
-                    <p>Encuentra la máxima velocidad para tus datos</p>
+                    <h2>Catálogo de Almacenamiento</h2>
                 </div>
 
+                <h3 style="margin: 20px 0; color: #1f21c4;">Alto Rendimiento (NVMe)</h3>
                 <div class="grid-productos">
-                    <div class="tarjeta-producto" data-marca="samsung">
-                        <div class="badget-speed">7450 MB/s</div>
-                        <img src="https://img.pccomponentes.com" alt="Samsung 990 Pro">
+                    <div class="tarjeta-producto" data-marca="samsung" data-tech="ssd">
+                        <div class="badget">TOP VENTAS</div>
+                        <img src="https://img.pccomponentes.com/articles/1074/10749544/6532-samsung-990-pro-2tb-ssd-pcie-40-nvme-m2-con-disipador-termico-opiniones.jpg" alt="Samsung 990 Pro">
                         <div class="info">
                             <span class="marca">SAMSUNG</span>
-                            <h3>Samsung 990 Pro SSD 2TB PCIe 4.0 NVMe M.2</h3>
-                            <p class="specs-tecnicas">PCIe Gen 4 x4 | V-NAND</p>
-                            <p class="precio">179,00€</p>
-                            <button class="btn-cesta">Añadir</button>
+                            <h3>Samsung 990 Pro 2TB SSD PCIe 4.0 NVMe</h3>
+                            <p class="precio">179,99€</p>
+                            <button class="btn-cesta">Añadir al carrito</button>
                         </div>
                     </div>
 
-                    <div class="tarjeta-producto" data-marca="crucial">
-                        <div class="badget-promo">Calidad/Precio</div>
-                        <img src="https://img.pccomponentes.com" alt="Crucial P3 Plus">
+                    <div class="tarjeta-producto" data-marca="wd" data-tech="ssd">
+                        <img src="https://thumb.pccomponentes.com/w-530-530/articles/1058/10582470/247-wd-black-sn850x-1tb-disco-ssd-7300mb-s-nvme-pcie-40-m2-gen4-16gt-s-comprar.jpg" alt="WD Black SN850X">
+                        <div class="info">
+                            <span class="marca">WESTERN DIGITAL</span>
+                            <h3>WD Black SN850X 1TB NVMe</h3>
+                            <p class="precio">105,00€</p>
+                            <button class="btn-cesta">Añadir al carrito</button>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="margin: 40px 0 20px; color: #1f21c4;">Capacidad y Backup (SATA/HDD)</h3>
+                <div class="grid-productos">
+                    <div class="tarjeta-producto" data-marca="crucial" data-tech="sata">
+                        <img src= "https://thumb.pccomponentes.com/w-530-530/articles/14/147001/1.jpg" alt="Crucial MX500 1TB SSD SATA3">
                         <div class="info">
                             <span class="marca">CRUCIAL</span>
-                            <h3>Crucial P3 Plus 1TB SSD M.2 PCIe 4.0 NVMe</h3>
-                            <p class="specs-tecnicas">Velocidad 5000 MB/s</p>
-                            <p class="precio">72,99€</p>
-                            <button class="btn-cesta">Añadir</button>
+                            <h3>Crucial MX500 1TB SSD SATA3</h3>
+                            <p class="precio">82,90€</p>
+                            <button class="btn-cesta">Añadir al carrito</button>
                         </div>
                     </div>
 
-                    <div class="tarjeta-producto" data-marca="seagate">
-                        <img src="https://img.pccomponentes.com" alt="Seagate BarraCuda">
+                    <div class="tarjeta-producto" data-marca="seagate" data-tech="hdd">
+                        <img src= "https://img.pccomponentes.com/articles/14/143694/o1.jpg" alt="Seagate BarraCuda 4TB HDD">
                         <div class="info">
                             <span class="marca">SEAGATE</span>
-                            <h3>Seagate BarraCuda 3.5" 2TB SATA 3</h3>
-                            <p class="specs-tecnicas">7200 RPM | 256MB Cache</p>
-                            <p class="precio">59,95€</p>
-                            <button class="btn-cesta">Añadir</button>
+                            <h3>Seagate BarraCuda 4TB 3.5" SATA3</h3>
+                            <p class="precio">99,00€</p>
+                            <button class="btn-cesta">Añadir al carrito</button>
                         </div>
                     </div>
                 </div>
@@ -74,37 +90,38 @@
         </div>
 
         <footer class="main-footer">
-            <p>Copyright 2026. Página realizada por [Tu Nombre] para el módulo de LMSGI.</p>
+            <p>Copyright 2026. Página realizada para el módulo de LMSGI.</p>
         </footer>
     </div>
 
     <script>
-        const checkboxes = document.querySelectorAll('.filtro');
-        const productos = document.querySelectorAll('.tarjeta-producto');
+        document.addEventListener('change', function() {
+            // Obtenemos qué marcas están seleccionadas
+            const marcasSeleccionadas = Array.from(document.querySelectorAll('.filtro-check[data-tipo="marca"]:checked'))
+                                             .map(cb => cb.value.toLowerCase());
+            
+            // Obtenemos qué tecnologías están seleccionadas
+            const techSeleccionadas = Array.from(document.querySelectorAll('.filtro-check[data-tipo="tech"]:checked'))
+                                           .map(cb => cb.value.toLowerCase());
 
-        checkboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', () => {
-                const filtrosActivos = Array.from(checkboxes)
-                    .filter(i => i.checked)
-                    .map(i => i.value.toLowerCase());
+            const productos = document.querySelectorAll('.tarjeta-producto');
 
-                productos.forEach(producto => {
-                    if (filtrosActivos.length === 0) {
-                        producto.style.display = 'flex';
-                        return;
-                    }
+            productos.forEach(producto => {
+                const marca = producto.getAttribute('data-marca').toLowerCase();
+                const tech = producto.getAttribute('data-tech').toLowerCase();
 
-                    const marcaProd = producto.getAttribute('data-marca')?.toLowerCase();
-                    
-                    if (filtrosActivos.includes(marcaProd)) {
-                        producto.style.display = 'flex';
-                    } else {
-                        producto.style.display = 'none';
-                    }
-                });
+                // Lógica: Si no hay nada seleccionado, mostrar todo. 
+                // Si hay algo seleccionado, debe cumplir ambos criterios (si ambos tienen checks)
+                const cumpleMarca = marcasSeleccionadas.length === 0 || marcasSeleccionadas.includes(marca);
+                const cumpleTech = techSeleccionadas.length === 0 || techSeleccionadas.includes(tech);
+
+                if (cumpleMarca && cumpleTech) {
+                    producto.style.display = 'block';
+                } else {
+                    producto.style.display = 'none';
+                }
             });
         });
     </script>
 </body>
 </html>
-
