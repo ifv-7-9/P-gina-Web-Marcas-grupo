@@ -11,7 +11,7 @@ Especificaciones Técnicas
 Ejercicio 1: Estructura HTML5
 - Contenedor Global
 - Encabezado: Sección "main-header" que integra el título, barra de búsqueda y el carrusel de imágenes.
-- Carrusel: Estructura de "carrusel-container" y "carrusel-track" con 3 imágenes de productos (Intel, ASUS, MSI).
+- Carrusel: Estructura de "carrusel-container" y "carrusel-track" con 3 imágenes de productos.
 - Navegación: Menú principal con efectos de hover.
   - sidebar-left: Menú secundario con enlaces externos (TechPowerUp, Geekbench, etc.) que se abren en nueva pestaña.
 - Contenido Semántico: Uso de "<article>" para la noticia principal, un "<iframe>" de YouTube y una sección "<aside>" para el "Componente del mes".
