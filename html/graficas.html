@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tarjetas Gráficas | BenchZone</title>
-    <link rel="stylesheet" href="../css/graficas.css">
-</head>
+    <link rel="stylesheet" href="../css/procesadores.css"> </head>
 <body>
 
     <div id="contenedor-global">
@@ -18,17 +17,11 @@
 
         <div class="cuerpo-flex">
             <aside class="sidebar-filtros">
-                <h3>Filtrar por Marca</h3>
+                <h3>Filtrar por</h3>
                 <div class="filtro-grupo">
-                    <label><input type="checkbox" class="filtro-marca" value="nvidia"> NVIDIA GeForce</label>
-                    <label><input type="checkbox" class="filtro-marca" value="amd"> AMD Radeon</label>
-                </div>
-                
-                <h3>Memoria VRAM</h3>
-                <div class="filtro-grupo">
-                    <label><input type="checkbox"> 8 GB</label>
-                    <label><input type="checkbox"> 12 GB</label>
-                    <label><input type="checkbox"> 16 GB o más</label>
+                    <h4>Marca</h4>
+                    <label><input type="checkbox" class="filtro-marca" value="nvidia"> NVIDIA</label>
+                    <label><input type="checkbox" class="filtro-marca" value="amd"> AMD</label>
                 </div>
             </aside>
 
@@ -37,70 +30,39 @@
                     <h2>Catálogo de Tarjetas Gráficas</h2>
                 </div>
 
-                <h3 style="margin: 20px 0; color: #1f21c4;">Gama Alta / 4K Gaming</h3>
+                <h3 style="margin: 20px 0; color: #1f21c4;">Gama Alta</h3>
                 <div class="grid-productos">
-                    <div class="tarjeta-producto" data-marca="nvidia">
-                        <div class="badget-new">Novedad</div>
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSVmjhsc7ftDw7GVfw7FHxYSzZf0KinRwTQQ&s" alt="ASUS TUF GAMING RTX 4080 SUPER">
-                        <div class="info">
-                            <span class="marca">NVIDIA</span>
-                            <h3>ASUS TUF RTX 4080 SUPER 16GB</h3>
-                            <p class="precio">1.149,00€</p>
-                            <button class="btn-cesta">Comprar ahora</button>
-                        </div>
-                    </div>
-
-                    <div class="tarjeta-producto" data-marca="amd">
-                        <img src="https://m.media-amazon.com/images/I/81n9vllhNeL._AC_UF894,1000_QL80_.jpg" alt="Sapphire Pulse RX 7900 XT">
-                        <div class="info">
-                            <span class="marca">AMD</span>
-                            <h3>Sapphire Pulse Radeon RX 7900 XT 20GB</h3>
-                            <p class="precio">849,90€</p>
-                            <button class="btn-cesta">Comprar ahora</button>
-                        </div>
-                    </div>
-
-                    <div class="tarjeta-producto" data-marca="nvidia">
-                        <img src="https://img.pccomponentes.com/articles/1081/10811518/1218-msi-geforce-rtx-4070-ti-super-gaming-x-slim-16gb-gddr6x-dlss3.jpg" alt="MSI RTX 4070 Ti SUPER">
+                    <div class="tarjeta-producto" data-marca="nvidia" data-gama="alta">
+                        <div class="badget">TOP</div>
+                        <img src="https://img.pccomponentes.com/articles/1081/10811518/1218-msi-geforce-rtx-4070-ti-super-gaming-x-slim-16gb-gddr6x-dlss3.jpg" alt="RTX 4070 Ti">
                         <div class="info">
                             <span class="marca">NVIDIA</span>
                             <h3>MSI RTX 4070 Ti SUPER 16GB</h3>
                             <p class="precio">899,00€</p>
-                            <button class="btn-cesta">Comprar ahora</button>
+                            <button class="btn-cesta">Añadir al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="tarjeta-producto" data-marca="amd" data-gama="alta">
+                        <img src="https://m.media-amazon.com/images/I/81n9vllhNeL._AC_UF894,1000_QL80_.jpg" alt="RX 7900 XT">
+                        <div class="info">
+                            <span class="marca">AMD</span>
+                            <h3>Sapphire Pulse Radeon RX 7900 XT 20GB</h3>
+                            <p class="precio">849,90€</p>
+                            <button class="btn-cesta">Añadir al carrito</button>
                         </div>
                     </div>
                 </div>
 
-                <h3 style="margin: 40px 0 20px; color: #1f21c4;">Gama Estándar / 1080p-1440p</h3>
+                <h3 style="margin: 40px 0 20px; color: #1f21c4;">Gama Estándar</h3>
                 <div class="grid-productos">
-                    <div class="tarjeta-producto" data-marca="amd">
-                        <img src="https://img.pccomponentes.com/articles/1077/10778403/1483-sapphire-amd-radeon-rx-7800-xt-16gb-gddr6.jpg" alt="Sapphire RX 7800 XT">
-                        <div class="info">
-                            <span class="marca">AMD</span>
-                            <h3>Sapphire Radeon RX 7800 XT 16GB</h3>
-                            <p class="precio">549,90€</p>
-                            <button class="btn-cesta">Comprar ahora</button>
-                        </div>
-                    </div>
-
                     <div class="tarjeta-producto" data-marca="nvidia">
-                        <div class="badget-promo">-15%</div>
-                        <img src="https://static.gigabyte.com/StaticFile/Image/Global/06c06d425970eb82d8f379f1e8bb828b/ProductRemoveBg/35362.png" alt="Gigabyte RTX 4060 Ti Gaming OC">
+                        <img src="https://static.gigabyte.com/StaticFile/Image/Global/06c06d425970eb82d8f379f1e8bb828b/ProductRemoveBg/35362.png" alt="RTX 4060">
                         <div class="info">
                             <span class="marca">NVIDIA</span>
-                            <h3>Gigabyte RTX 4060 Ti Gaming OC 8GB</h3>
+                            <h3>Gigabyte RTX 4060 Ti 8GB</h3>
                             <p class="precio">399,00€</p>
-                            <button class="btn-cesta">Comprar ahora</button>
-                        </div>
-                    </div>
-
-                    <div class="tarjeta-producto" data-marca="amd">
-                        <img src="https://img.pccomponentes.com/articles/1086/10865214/1743-gigabyte-radeon-rx-7600-gaming-oc-8gb-gddr6-review.jpg" alt="Gigabyte RX 7600 Gaming OC">
-                        <div class="info">
-                            <span class="marca">AMD</span>
-                            <h3>Gigabyte Radeon RX 7600 8GB</h3>
-                            <p class="precio">299,00€</p>
-                            <button class="btn-cesta">Comprar ahora</button>
+                            <button class="btn-cesta">Añadir al carrito</button>
                         </div>
                     </div>
                 </div>
@@ -113,45 +75,31 @@
     </div>
 
     <script>
-        document.addEventListener('change', function() {
-            const seleccionados = Array.from(document.querySelectorAll('.filtro-marca:checked'))
-                                       .map(cb => cb.value.toLowerCase());
-            
-            const productos = document.querySelectorAll('.tarjeta-producto');
-
-            productos.forEach(producto => {
-                const marca = producto.getAttribute('data-marca').toLowerCase();
-                
-                if (seleccionados.length === 0 || seleccionados.includes(marca)) {
-                    producto.style.display = 'block'; 
-                } else {
-                    producto.style.display = 'none';
-                }
+        // Lógica unificada de filtros y descuentos
+        function inicializar() {
+            // 1. Filtros
+            document.addEventListener('change', function() {
+                const seleccionados = Array.from(document.querySelectorAll('.filtro-marca:checked')).map(cb => cb.value.toLowerCase());
+                const productos = document.querySelectorAll('.tarjeta-producto');
+                productos.forEach(p => {
+                    const marca = p.getAttribute('data-marca').toLowerCase();
+                    p.style.display = (seleccionados.length === 0 || seleccionados.includes(marca)) ? 'block' : 'none';
+                });
             });
-        });
-    </script>
 
-    <script>
-    document.addEventListener('change', function() {
-        // 1. Buscamos qué marcas están seleccionadas (nvidia o amd)
-        const seleccionados = Array.from(document.querySelectorAll('.filtro-marca:checked'))
-                                   .map(cb => cb.value.toLowerCase());
-        
-        // 2. Seleccionamos todas las tarjetas de video
-        const productos = document.querySelectorAll('.tarjeta-producto');
-
-        productos.forEach(producto => {
-            // Leemos la "pegatina" data-marca que pusimos en el HTML
-            const marca = producto.getAttribute('data-marca').toLowerCase();
-            
-            // 3. Si no hay nada marcado, mostramos todo. Si hay algo, filtramos.
-            if (seleccionados.length === 0 || seleccionados.includes(marca)) {
-                producto.style.display = 'block'; 
-            } else {
-                producto.style.display = 'none';
+            // 2. Descuentos Socio
+            const usuario = localStorage.getItem('nombreUsuario');
+            if (usuario) {
+                const altaGama = document.querySelectorAll('.tarjeta-producto[data-gama="alta"]');
+                altaGama.forEach(p => {
+                    const elPrecio = p.querySelector('.precio');
+                    let valor = parseFloat(elPrecio.innerText.replace('€', '').replace('.', '').replace(',', '.'));
+                    let dto = valor * 0.90;
+                    elPrecio.innerHTML = `<span style="text-decoration:line-through;color:gray;font-size:0.8em;">${valor.toFixed(2).replace('.', ',')}€</span> <span style="color:#e67e22;margin-left:8px;">${dto.toFixed(2).replace('.', ',')}€</span>`;
+                });
             }
-        });
-    });
-</script>
+        }
+        window.onload = inicializar;
+    </script>
 </body>
 </html>

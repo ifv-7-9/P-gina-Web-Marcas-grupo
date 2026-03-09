@@ -110,22 +110,64 @@
     </div>
 
     <script>
-        document.addEventListener('change', function() {
-            const seleccionados = Array.from(document.querySelectorAll('.filtro-tipo:checked'))
-                                       .map(cb => cb.value.toLowerCase());
-            
-            const productos = document.querySelectorAll('.tarjeta-producto');
+    // 1. Lógica de Filtros (Tipo de Memoria)
+    document.addEventListener('change', function() {
+        const seleccionados = Array.from(document.querySelectorAll('.filtro-tipo:checked'))
+                                   .map(cb => cb.value.toLowerCase());
+        
+        const productos = document.querySelectorAll('.tarjeta-producto');
 
-            productos.forEach(producto => {
-                const tipo = producto.getAttribute('data-tipo').toLowerCase();
+        productos.forEach(producto => {
+            const tipo = producto.getAttribute('data-tipo').toLowerCase();
+            if (seleccionados.length === 0 || seleccionados.includes(tipo)) {
+                producto.style.display = 'block'; 
+            } else {
+                producto.style.display = 'none';
+            }
+        });
+    });
+
+    // 2. Lógica de Descuento para Socios
+    function aplicarDescuentoSocio() {
+        const usuarioLogueado = localStorage.getItem('nombreUsuario');
+        
+        if (usuarioLogueado) {
+            // Aplicamos descuento solo a las memorias DDR5 (Nueva Generación)
+            const productosDDR5 = document.querySelectorAll('.tarjeta-producto[data-tipo="ddr5"]');
+
+            productosDDR5.forEach(producto => {
+                const elementoPrecio = producto.querySelector('.precio');
                 
-                if (seleccionados.length === 0 || seleccionados.includes(tipo)) {
-                    producto.style.display = 'block'; 
-                } else {
-                    producto.style.display = 'none';
+                // Limpiar el texto del precio para operar (ej: "124,99€" -> 124.99)
+                let textoLimpio = elementoPrecio.innerText.replace('€', '').replace('.', '').replace(',', '.');
+                let precioOriginal = parseFloat(textoLimpio);
+                
+                // Cálculo del 10% de descuento
+                let precioDescuento = precioOriginal * 0.90;
+
+                // Actualizar el HTML con el precio tachado y el nuevo precio
+                elementoPrecio.innerHTML = `
+                    <span style="text-decoration: line-through; color: #999; font-size: 0.85em;">${precioOriginal.toFixed(2).replace('.', ',')}€</span> 
+                    <span style="color: #e67e22; font-weight: bold; margin-left: 8px;">${precioDescuento.toFixed(2).replace('.', ',')}€</span>
+                `;
+                
+                // Añadir etiqueta visual de oferta
+                const infoDiv = producto.querySelector('.info');
+                if (!infoDiv.querySelector('.tag-socio')) {
+                    const tagSocio = document.createElement('small');
+                    tagSocio.className = 'tag-socio';
+                    tagSocio.innerText = "¡Oferta Socio BenchZone!";
+                    tagSocio.style.color = "#27ae60";
+                    tagSocio.style.display = "block";
+                    tagSocio.style.fontWeight = "bold";
+                    infoDiv.insertBefore(tagSocio, elementoPrecio);
                 }
             });
-        });
-    </script>
+        }
+    }
+
+    // Ejecutar cuando la página esté lista
+    window.addEventListener('load', aplicarDescuentoSocio);
+</script>
 </body>
 </html>

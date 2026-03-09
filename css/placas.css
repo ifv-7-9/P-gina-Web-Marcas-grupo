@@ -1,189 +1,211 @@
-<<<<<<< HEAD
-
+/* --- CONFIGURACIÓN BASE --- */
 * {
-
-    margin: 0; padding: 0; box-sizing: border-box;
-
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, sans-serif;
 }
 
-
-
-body { background-color: #f2f2f2; }
-
-
+body { 
+    background-color: #f0f2f5; 
+    color: #333;
+}
 
 #contenedor-global {
-
     max-width: 1300px;
-
     margin: 0 auto;
-
     background-color: #fff;
-
     min-height: 100vh;
-
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
 }
 
-
-
+/* --- HEADER Y NAVEGACIÓN --- */
 .mini-header {
-
     padding: 20px 40px;
-
-    border-bottom: 3px solid #1f21c4;
-
+    border-bottom: 4px solid #1f21c4;
+    background: linear-gradient(to right, #ffffff, #f8f9ff);
 }
 
+.mini-header h1 { 
+    color: #1f21c4; 
+    font-weight: 800; 
+    text-transform: uppercase;
+    letter-spacing: -1px;
+}
 
+.breadcrumb {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 5px;
+}
 
-.mini-header h1 { color: #1f21c4; font-weight: 800; }
+/* --- DISEÑO FLEXIBLE (SIDEBAR + CONTENIDO) --- */
+.cuerpo-flex { 
+    display: flex; 
+    padding: 30px 40px; 
+    gap: 30px; 
+}
 
+.sidebar-filtros {
+    flex: 0 0 260px;
+    background: #f9f9f9;
+    padding: 25px;
+    border-radius: 12px;
+    height: fit-content;
+    position: sticky;
+    top: 20px;
+}
 
+.sidebar-filtros h3 { 
+    margin-bottom: 20px; 
+    font-size: 1.1rem; 
+    color: #1f21c4; 
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
 
-.cuerpo-flex { display: flex; padding: 30px 40px; gap: 40px; }
+.filtro-grupo { margin-bottom: 25px; }
 
+.filtro-grupo label {
+    display: flex;
+    align-items: center;
+    margin: 12px 0;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
 
+.filtro-grupo label:hover { color: #1f21c4; }
 
-/* Filtros */
+.filtro-grupo input[type="checkbox"] { margin-right: 10px; }
 
-.sidebar-filtros { flex: 1; border-right: 1px dotted #ccc; }
+/* --- CATÁLOGO DE PRODUCTOS --- */
+.catalogo { flex: 1; }
 
-.sidebar-filtros h3 { color: #333; margin-bottom: 15px; }
-
-.filtro-grupo h4 { font-size: 0.9rem; margin: 15px 0 10px; color: #1f21c4; }
-
-.filtro-grupo label { display: block; margin: 8px 0; font-size: 0.85rem; cursor: pointer; }
-
-
-
-/* Grilla */
-
-.catalogo { flex: 4; }
+.header-catalogo h2 {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    color: #222;
+}
 
 .grid-productos {
-
     display: grid;
-
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-
     gap: 25px;
-
 }
-
-
 
 .tarjeta-producto {
-
-    border: 1px solid #f0f0f0;
-
-    border-radius: 8px;
-
-    padding: 20px;
-
+    border: 1px solid #eee;
+    border-radius: 15px;
+    padding: 25px;
     position: relative;
-
-    transition: all 0.3s;
-
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    background: #fff;
+    display: flex;
+    flex-direction: column;
 }
-
-
 
 .tarjeta-producto:hover {
-
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(31, 33, 196, 0.12);
     border-color: #1f21c4;
-
-    transform: scale(1.02);
-
 }
 
-
-
-/* Badgets específicos para Placas */
-
-.badget-chipset {
-
-    position: absolute; top: 10px; right: 10px;
-
-    background-color: #2c3e50; color: white;
-
-    padding: 3px 8px; border-radius: 4px; font-size: 0.65rem; font-weight: bold;
-
+/* --- IMÁGENES Y MARCAS --- */
+.tarjeta-producto img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    margin-bottom: 20px;
 }
 
-
-
-.badget-promo {
-
-    position: absolute; top: 10px; right: 10px;
-
-    background-color: #1f21c4; color: white;
-
-    padding: 3px 8px; border-radius: 4px; font-size: 0.65rem; font-weight: bold;
-
+.marca {
+    font-size: 0.75rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
 }
 
+/* Colores dinámicos por marca */
+.tarjeta-producto[data-marca="asus"] .marca { color: #0054a6; }
+.tarjeta-producto[data-marca="msi"] .marca { color: #ff0000; }
+.tarjeta-producto[data-marca="gigabyte"] .marca { color: #ff5e00; }
 
+.info h3 {
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.4;
+    margin-bottom: 15px;
+    min-height: 45px;
+}
 
-.tarjeta-producto img { width: 100%; height: 200px; object-fit: contain; margin-bottom: 15px; }
+/* --- ESTILOS DE PRECIO Y DESCUENTO --- */
+.precio {
+    font-size: 1.6rem;
+    color: #222;
+    font-weight: 800;
+    margin: 15px 0;
+    display: flex;
+    flex-direction: column; /* Para que el precio tachado salga arriba si quieres */
+}
 
+/* Estos estilos se activan cuando el JS inyecta el descuento */
+.precio span[style*="line-through"] {
+    opacity: 0.6;
+    margin-bottom: 2px;
+}
 
+.tag-socio {
+    background-color: #e8f8f0;
+    color: #27ae60;
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    margin-bottom: 10px;
+}
 
-.marca { font-size: 0.7rem; color: #888; font-weight: bold; }
-
-.info h3 { font-size: 0.95rem; color: #333; margin: 10px 0; min-height: 40px; }
-
-.specs-tecnicas { font-size: 0.8rem; color: #3498db; font-weight: bold; margin-bottom: 15px; }
-
-.precio { font-size: 1.5rem; font-weight: 800; color: #222; margin-bottom: 20px; }
-
-
-
+/* --- BOTONES Y ETIQUETAS --- */
 .btn-cesta {
-
-    width: 100%; padding: 12px;
-
-    background-color: #1f21c4; color: white;
-
-    border: none; border-radius: 5px; font-weight: bold;
-
-    cursor: pointer; transition: 0.3s;
-
+    width: 100%;
+    background: #1f21c4;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: auto; /* Empuja el botón al fondo */
 }
 
+.btn-cesta:hover {
+    background: #e55600; /* Cambio a naranja al pasar el mouse */
+    box-shadow: 0 5px 15px rgba(229, 86, 0, 0.3);
+}
 
+.badget-new, .badget-promo {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: #fff;
+    padding: 5px 12px;
+    font-weight: bold;
+    border-radius: 8px;
+    font-size: 0.7rem;
+    z-index: 10;
+}
 
-.btn-cesta:hover { background-color: #333; }
+.badget-new { background: #e60026; } /* Estilo ROG */
+.badget-promo { background: #27ae60; } /* Estilo Eco */
 
-
-
-.main-footer { text-align: center; padding: 40px; background: #fafafa; border-top: 1px solid #eee; margin-top: 50px; }
-
-
-
-/* Reutilizamos la base de los anteriores */
-
-.cuerpo-flex { display: flex; gap: 20px; padding: 20px; align-items: flex-start; }
-
-.sidebar-filtros { flex: 0 0 250px; background: #f4f4f4; padding: 20px; border-radius: 10px; }
-
-.grid-productos { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-
-.tarjeta-producto { border: 1px solid #ddd; padding: 15px; border-radius: 8px; text-align: center; position: relative; }
-
-.tarjeta-producto img { max-width: 100%; height: 200px; object-fit: contain; }
-
-
-
-/* Colores de marca para placas */
-
-.tarjeta-producto[data-marca="asus"] .marca { color: #0054a6; font-weight: bold; }
-
-.tarjeta-producto[data-marca="msi"] .marca { color: #ff0000; font-weight: bold; }
-
-.tarjeta-producto[data-marca="gigabyte"] .marca { color: #ff5e00; font-weight: bold; }
-
-
-
-.btn-cesta { background: #1f21c4; color: white; border: none; padding: 10px; width: 100%; cursor: pointer; border-radius: 5px; }
+/* --- FOOTER --- */
+.main-footer {
+    text-align: center;
+    padding: 40px;
+    background: #fdfdfd;
+    border-top: 1px solid #eee;
+    color: #888;
+    font-size: 0.9rem;
+}

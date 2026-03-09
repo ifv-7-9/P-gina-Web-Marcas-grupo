@@ -39,7 +39,7 @@
 
                 <h3 style="margin: 20px 0; color: #1f21c4;">Gama Premium (Chipset Z790/X670)</h3>
                 <div class="grid-productos">
-                    <div class="tarjeta-producto" data-marca="asus">
+                    <div class="tarjeta-producto" data-marca="asus" data-gama="premium">
                         <div class="badget-new">ROG</div>
                         <img src="https://m.media-amazon.com/images/I/81cQQqzPcSL._AC_UF894,1000_QL80_.jpg" alt="ASUS ROG STRIX Z790-E GAMING WIFI">
                         <div class="info">
@@ -50,7 +50,7 @@
                         </div>
                     </div>
 
-                    <div class="tarjeta-producto" data-marca="msi">
+                    <div class="tarjeta-producto" data-marca="msi" data-gama="premium">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9zGSklgx_IfvuYCf5_nV2fJZRZqmxHN8Tow&s" alt="MSI MPG Z790 EDGE WIFI">
                         <div class="info">
                             <span class="marca">MSI</span>
@@ -60,7 +60,7 @@
                         </div>
                     </div>
 
-                    <div class="tarjeta-producto" data-marca="gigabyte">
+                    <div class="tarjeta-producto" data-marca="gigabyte" data-gama="premium">
                         <img src="https://cdn.idealo.com/folder/Product/202120/8/202120830/s11_produktbild_gross_1/gigabyte-z790-aorus-elite-ax.jpg" alt="Gigabyte Z790 AORUS ELITE AX">
                         <div class="info">
                             <span class="marca">GIGABYTE</span>
@@ -113,6 +113,7 @@
     </div>
 
     <script>
+        // 1. Lógica de FILTROS DE MARCA
         document.addEventListener('change', function() {
             const seleccionados = Array.from(document.querySelectorAll('.filtro-marca:checked'))
                                        .map(cb => cb.value.toLowerCase());
@@ -129,31 +130,49 @@
                 }
             });
         });
-    </script>
 
-    <script>
-    document.addEventListener('change', function() {
-        // 1. Capturamos qué casillas de fabricante están marcadas
-        const seleccionados = Array.from(document.querySelectorAll('.filtro-marca:checked'))
-                                   .map(cb => cb.value.toLowerCase());
-        
-        // 2. Localizamos todas las tarjetas de placas base
-        const productos = document.querySelectorAll('.tarjeta-producto');
-
-        productos.forEach(producto => {
-            // Leemos el atributo data-marca que pusimos en el HTML
-            const marca = producto.getAttribute('data-marca').toLowerCase();
+        // 2. Lógica de DESCUENTO PARA SOCIOS
+        function aplicarDescuentoPlacas() {
+            // Verifica si el usuario existe en el localStorage
+            const usuarioLogueado = localStorage.getItem('nombreUsuario');
             
-            // 3. Lógica de filtrado:
-            // Si no hay marcas seleccionadas, mostramos todo.
-            // Si hay marcas seleccionadas, mostramos solo las que coincidan.
-            if (seleccionados.length === 0 || seleccionados.includes(marca)) {
-                producto.style.display = 'block'; 
-            } else {
-                producto.style.display = 'none';
+            if (usuarioLogueado) {
+                // Selecciona solo las tarjetas con el atributo data-gama="premium"
+                const placasPremium = document.querySelectorAll('.tarjeta-producto[data-gama="premium"]');
+
+                placasPremium.forEach(placa => {
+                    const elementoPrecio = placa.querySelector('.precio');
+                    
+                    // Convertir "489,00€" en número operable
+                    let textoLimpio = elementoPrecio.innerText.replace('€', '').replace('.', '').replace(',', '.');
+                    let precioOriginal = parseFloat(textoLimpio);
+                    
+                    // Aplicar 10% de descuento
+                    let precioDescuento = precioOriginal * 0.90;
+
+                    // Actualizar el HTML con el diseño de oferta
+                    elementoPrecio.innerHTML = `
+                        <span style="text-decoration: line-through; color: #999; font-size: 0.85em;">${precioOriginal.toFixed(2).replace('.', ',')}€</span> 
+                        <span style="color: #e67e22; font-weight: bold; margin-left: 8px;">${precioDescuento.toFixed(2).replace('.', ',')}€</span>
+                    `;
+                    
+                    // Añadir etiqueta visual de socio
+                    const infoDiv = placa.querySelector('.info');
+                    if (!infoDiv.querySelector('.tag-socio')) {
+                        const tagSocio = document.createElement('small');
+                        tagSocio.className = 'tag-socio';
+                        tagSocio.innerText = "¡Precio Especial Socio!";
+                        tagSocio.style.color = "#27ae60";
+                        tagSocio.style.display = "block";
+                        tagSocio.style.fontWeight = "bold";
+                        infoDiv.insertBefore(tagSocio, elementoPrecio);
+                    }
+                });
             }
-        });
-    });
-</script>
+        }
+
+        // Ejecutar la función de descuento al cargar la página
+        window.addEventListener('load', aplicarDescuentoPlacas);
+    </script>
 </body>
 </html>

@@ -123,5 +123,52 @@
             });
         });
     </script>
+
+<script>
+    // 1. Lógica de Filtros (Marca y Tecnología)
+    document.addEventListener('change', function() {
+        const marcasSeleccionadas = Array.from(document.querySelectorAll('.filtro-check[data-tipo="marca"]:checked'))
+                                         .map(cb => cb.value.toLowerCase());
+        const techSeleccionadas = Array.from(document.querySelectorAll('.filtro-check[data-tipo="tech"]:checked'))
+                                       .map(cb => cb.value.toLowerCase());
+
+        const productos = document.querySelectorAll('.tarjeta-producto');
+
+        productos.forEach(producto => {
+            const marca = producto.getAttribute('data-marca').toLowerCase();
+            const tech = producto.getAttribute('data-tech').toLowerCase();
+            const cumpleMarca = marcasSeleccionadas.length === 0 || marcasSeleccionadas.includes(marca);
+            const cumpleTech = techSeleccionadas.length === 0 || techSeleccionadas.includes(tech);
+
+            producto.style.display = (cumpleMarca && cumpleTech) ? 'block' : 'none';
+        });
+    });
+
+    // 2. Lógica de Descuento (Solo para NVMe/SSD)
+    function aplicarDescuentoAlmacenamiento() {
+        const usuarioLogueado = localStorage.getItem('nombreUsuario');
+        if (usuarioLogueado) {
+            const productosNVMe = document.querySelectorAll('.tarjeta-producto[data-tech="ssd"]');
+
+            productosNVMe.forEach(prod => {
+                const elPrecio = prod.querySelector('.precio');
+                let valor = parseFloat(elPrecio.innerText.replace('€', '').replace('.', '').replace(',', '.'));
+                let rebaja = valor * 0.90;
+
+                elPrecio.innerHTML = `
+                    <span style="text-decoration: line-through; color: #999; font-size: 0.85em;">${valor.toFixed(2).replace('.', ',')}€</span> 
+                    <span style="color: #e67e22; font-weight: bold; margin-left: 8px;">${rebaja.toFixed(2).replace('.', ',')}€</span>
+                `;
+
+                const tag = document.createElement('small');
+                tag.innerText = "¡Descuento NVMe para socios!";
+                tag.style.color = "#27ae60";
+                tag.style.display = "block";
+                prod.querySelector('.info').insertBefore(tag, elPrecio);
+            });
+        }
+    }
+    window.addEventListener('load', aplicarDescuentoAlmacenamiento);
+</script>
 </body>
 </html>
