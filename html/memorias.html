@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,7 +9,6 @@
 <body>
 
     <div id="contenedor-global">
-        <!-- Header de sección -->
         <header class="mini-header">
             <div class="top-bar">
                 <a href="index.html" style="text-decoration:none;"><h1>BenchZone</h1></a>
@@ -19,63 +17,86 @@
         </header>
 
         <div class="cuerpo-flex">
-            <!-- Filtros de RAM -->
             <aside class="sidebar-filtros">
                 <h3>Especificaciones</h3>
                 <div class="filtro-grupo">
                     <h4>Tipo de Memoria</h4>
-                    <label><input type="checkbox"> DDR5 (24)</label>
-                    <label><input type="checkbox"> DDR4 (56)</label>
+                    <label><input type="checkbox" class="filtro-tipo" value="ddr5"> DDR5</label>
+                    <label><input type="checkbox" class="filtro-tipo" value="ddr4"> DDR4</label>
                 </div>
+                
                 <div class="filtro-grupo">
                     <h4>Capacidad</h4>
                     <label><input type="checkbox"> 16 GB (2x8GB)</label>
                     <label><input type="checkbox"> 32 GB (2x16GB)</label>
-                    <label><input type="checkbox"> 64 GB (2x32GB)</label>
+                    <label><input type="checkbox"> 64 GB+</label>
                 </div>
             </aside>
 
-            <!-- Listado de RAMs -->
             <main class="catalogo">
                 <div class="header-catalogo">
-                    <h2>Memorias RAM: Velocidad para tu sistema</h2>
+                    <h2>Memorias RAM de Alto Rendimiento</h2>
                 </div>
 
+                <h3 style="margin: 20px 0; color: #1f21c4;">Nueva Generación (DDR5)</h3>
                 <div class="grid-productos">
-                    <!-- Producto 1: Corsair -->
-                    <div class="tarjeta-producto">
+                    <div class="tarjeta-producto" data-tipo="ddr5">
                         <div class="badget-rgb">RGB Sync</div>
-                        <img src="https://img.pccomponentes.com" alt="Corsair Vengeance">
+                        <img src="https://img.pccomponentes.com/articles/1071/10711396/1323-corsair-vengeance-rgb-ddr5-6000mhz-pc5-48000-32gb-2x16gb-cl36-negro.jpg" alt="Corsair Vengeance RGB DDR5">
                         <div class="info">
                             <span class="marca">CORSAIR</span>
-                            <h3>Corsair Vengeance RGB DDR5 6000MHz 32GB CL36</h3>
-                            <p class="specs-tecnicas">DDR5 | 6000 MHz | Latencia CL36</p>
+                            <h3>Corsair Vengeance RGB DDR5 32GB 6000MHz</h3>
+                            <p class="specs-tecnicas">DDR5 | 6000 MHz | CL36</p>
                             <p class="precio">124,99€</p>
                             <button class="btn-cesta">Añadir</button>
                         </div>
                     </div>
 
-                    <!-- Producto 2: G.Skill -->
-                    <div class="tarjeta-producto">
-                        <img src="https://img.pccomponentes.com" alt="G.Skill Trident">
+                    <div class="tarjeta-producto" data-tipo="ddr5">
+                        <img src="https://img.pccomponentes.com/articles/1063/10632981/1157-gskill-trident-z5-neo-rgb-ddr5-6000mhz-32gb-2x16gb-cl32.jpg" alt="G.Skill Trident Z5 Neo RGB DDR5">
                         <div class="info">
                             <span class="marca">G.SKILL</span>
-                            <h3>G.Skill Trident Z5 Neo RGB DDR5 6000 32GB CL30</h3>
-                            <p class="specs-tecnicas">Optimizado AMD EXPO | CL30</p>
+                            <h3>G.Skill Trident Z5 Neo RGB 32GB</h3>
+                            <p class="specs-tecnicas">DDR5 | AMD EXPO | CL30</p>
                             <p class="precio">132,00€</p>
                             <button class="btn-cesta">Añadir</button>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Producto 3: Kingston -->
-                    <div class="tarjeta-producto">
+                <h3 style="margin: 40px 0 20px; color: #1f21c4;">Estándar Rendimiento (DDR4)</h3>
+                <div class="grid-productos">
+                    <div class="tarjeta-producto" data-tipo="ddr4">
                         <div class="badget-promo">Top Ventas</div>
-                        <img src="https://img.pccomponentes.com" alt="Kingston Fury">
+                        <img src="https://img.pccomponentes.com/articles/43/432664/1392-kingston-fury-beast-ddr4-3200-mhz-16gb-2x8gb-cl16.jpg" alt="Kingston FURY Beast DDR4">
                         <div class="info">
                             <span class="marca">KINGSTON</span>
-                            <h3>Kingston FURY Beast DDR4 3200 MHz 16GB CL16</h3>
-                            <p class="specs-tecnicas">DDR4 | 3200 MHz | Perfil XMP</p>
+                            <h3>Kingston FURY Beast DDR4 16GB 3200MHz</h3>
+                            <p class="specs-tecnicas">DDR4 | 3200 MHz | CL16</p>
                             <p class="precio">45,99€</p>
+                            <button class="btn-cesta">Añadir</button>
+                        </div>
+                    </div>
+
+                    <div class="tarjeta-producto" data-tipo="ddr4">
+                        <img src="https://assets.corsair.com/image/upload/c_pad,q_85,h_1100,w_1100,f_auto/products/Memory/CMK16GX4M2B3200C16/Gallery/VENG_LPX_BLK_00.webp" alt="Corsair Vengeance LPX DDR4">
+                        <div class="info">
+                            <span class="marca">CORSAIR</span>
+                            <h3>Corsair Vengeance LPX 16GB (2x8GB) 3200MHz</h3>
+                            <p class="specs-tecnicas">DDR4 | Perfil Bajo | CL16</p>
+                            <p class="precio">42,50€</p>
+                            <button class="btn-cesta">Añadir</button>
+                        </div>
+                    </div>
+
+                    <div class="tarjeta-producto" data-tipo="ddr4">
+                        <div class="badget-promo">Eco</div>
+                        <img src="https://m.media-amazon.com/images/I/51idNDyR9gL._AC_UF894,1000_QL80_.jpg  " alt="Crucial Pro DDR4">
+                        <div class="info">
+                            <span class="marca">CRUCIAL</span>
+                            <h3>Crucial Pro DDR4 32GB (2x16GB) 3200MHz</h3>
+                            <p class="specs-tecnicas">DDR4 | Edición Pro | CL22</p>
+                            <p class="precio">78,90€</p>
                             <button class="btn-cesta">Añadir</button>
                         </div>
                     </div>
@@ -84,10 +105,27 @@
         </div>
 
         <footer class="main-footer">
-            <p>Copyright 2026. Página realizada por [Tu Nombre] para el módulo de LMSGI.</p>
+            <p>Copyright 2026. Página realizada para el módulo de LMSGI.</p>
         </footer>
     </div>
 
+    <script>
+        document.addEventListener('change', function() {
+            const seleccionados = Array.from(document.querySelectorAll('.filtro-tipo:checked'))
+                                       .map(cb => cb.value.toLowerCase());
+            
+            const productos = document.querySelectorAll('.tarjeta-producto');
+
+            productos.forEach(producto => {
+                const tipo = producto.getAttribute('data-tipo').toLowerCase();
+                
+                if (seleccionados.length === 0 || seleccionados.includes(tipo)) {
+                    producto.style.display = 'block'; 
+                } else {
+                    producto.style.display = 'none';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
-

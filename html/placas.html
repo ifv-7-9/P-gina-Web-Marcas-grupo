@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,7 +9,6 @@
 <body>
 
     <div id="contenedor-global">
-        <!-- Header de sección -->
         <header class="mini-header">
             <div class="top-bar">
                 <a href="index.html" style="text-decoration:none;"><h1>BenchZone</h1></a>
@@ -19,69 +17,89 @@
         </header>
 
         <div class="cuerpo-flex">
-            <!-- Filtros específicos para Placas -->
             <aside class="sidebar-filtros">
-                <h3>Socket / Zócalo</h3>
+                <h3>Fabricante</h3>
                 <div class="filtro-grupo">
-                    <h4>Intel</h4>
-                    <label><input type="checkbox"> LGA 1700 (14th/13th Gen)</label>
-                    <label><input type="checkbox"> LGA 1200</label>
+                    <label><input type="checkbox" class="filtro-marca" value="asus"> ASUS</label>
+                    <label><input type="checkbox" class="filtro-marca" value="msi"> MSI</label>
+                    <label><input type="checkbox" class="filtro-marca" value="gigabyte"> Gigabyte</label>
                 </div>
+                
+                <h3>Socket</h3>
                 <div class="filtro-grupo">
-                    <h4>AMD</h4>
-                    <label><input type="checkbox"> AM5 (Ryzen 7000/8000)</label>
-                    <label><input type="checkbox"> AM4</label>
-                </div>
-                <div class="filtro-grupo">
-                    <h4>Formato</h4>
-                    <label><input type="checkbox"> ATX</label>
-                    <label><input type="checkbox"> Micro-ATX</label>
+                    <label><input type="checkbox"> AM5 (AMD)</label>
+                    <label><input type="checkbox"> LGA1700 (Intel)</label>
                 </div>
             </aside>
 
-            <!-- Listado de Placas Base -->
             <main class="catalogo">
                 <div class="header-catalogo">
-                    <h2>Placas Base: El corazón de tu PC</h2>
-                    <p>Compatibilidad garantizada para los últimos procesadores</p>
+                    <h2>Placas Base de Alto Rendimiento</h2>
                 </div>
 
+                <h3 style="margin: 20px 0; color: #1f21c4;">Gama Premium (Chipset Z790/X670)</h3>
                 <div class="grid-productos">
-                    <!-- Producto 1: ASUS ROG -->
-                    <div class="tarjeta-producto">
-                        <div class="badget-chipset">Chipset Z790</div>
-                        <img src="https://img.pccomponentes.com" alt="ASUS ROG Strix">
+                    <div class="tarjeta-producto" data-marca="asus">
+                        <div class="badget-new">ROG</div>
+                        <img src="https://m.media-amazon.com/images/I/81cQQqzPcSL._AC_UF894,1000_QL80_.jpg" alt="ASUS ROG STRIX Z790-E GAMING WIFI">
                         <div class="info">
                             <span class="marca">ASUS</span>
                             <h3>ASUS ROG STRIX Z790-E GAMING WIFI</h3>
-                            <p class="specs-tecnicas">DDR5 | PCIe 5.0 | WiFi 6E</p>
-                            <p class="precio">489,90€</p>
+                            <p class="precio">489,00€</p>
                             <button class="btn-cesta">Añadir</button>
                         </div>
                     </div>
 
-                    <!-- Producto 2: MSI Mag -->
-                    <div class="tarjeta-producto">
-                        <div class="badget-chipset">Chipset B650</div>
-                        <img src="https://img.pccomponentes.com" alt="MSI Mag Tomahawk">
+                    <div class="tarjeta-producto" data-marca="msi">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9zGSklgx_IfvuYCf5_nV2fJZRZqmxHN8Tow&s" alt="MSI MPG Z790 EDGE WIFI">
+                        <div class="info">
+                            <span class="marca">MSI</span>
+                            <h3>MSI MPG Z790 EDGE WIFI</h3>
+                            <p class="precio">359,90€</p>
+                            <button class="btn-cesta">Añadir</button>
+                        </div>
+                    </div>
+
+                    <div class="tarjeta-producto" data-marca="gigabyte">
+                        <img src="https://cdn.idealo.com/folder/Product/202120/8/202120830/s11_produktbild_gross_1/gigabyte-z790-aorus-elite-ax.jpg" alt="Gigabyte Z790 AORUS ELITE AX">
+                        <div class="info">
+                            <span class="marca">GIGABYTE</span>
+                            <h3>Gigabyte Z790 AORUS ELITE AX</h3>
+                            <p class="precio">275,00€</p>
+                            <button class="btn-cesta">Añadir</button>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="margin: 40px 0 20px; color: #1f21c4;">Gama Media (Chipset B650/B760)</h3>
+                <div class="grid-productos">
+                    <div class="tarjeta-producto" data-marca="asus">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCNxqBsZGsvgQ8iVhVRwDHjlPIGIwLzqSwIQ&s" alt="ASUS TUF GAMING B650-PLUS WIFI">
+                        <div class="info">
+                            <span class="marca">ASUS</span>
+                            <h3>ASUS TUF GAMING B650-PLUS WIFI</h3>
+                            <p class="precio">199,00€</p>
+                            <button class="btn-cesta">Añadir</button>
+                        </div>
+                    </div>
+
+                    <div class="tarjeta-producto" data-marca="msi">
+                        <img src="https://storage-asset.msi.com/global/picture/image/feature/mb/B650/MAG-B650-TOMAHAWK-WIFI/mag-b650-tomahawk-wifi.png" alt="MSI MAG B650 TOMAHAWK WIFI">
                         <div class="info">
                             <span class="marca">MSI</span>
                             <h3>MSI MAG B650 TOMAHAWK WIFI</h3>
-                            <p class="specs-tecnicas">Socket AM5 | Audio Boost 5</p>
                             <p class="precio">215,00€</p>
                             <button class="btn-cesta">Añadir</button>
                         </div>
                     </div>
 
-                    <!-- Producto 3: Gigabyte Aorus -->
-                    <div class="tarjeta-producto">
-                        <div class="badget-promo">Recomendado</div>
-                        <img src="https://img.pccomponentes.com" alt="Gigabyte Aorus Elite">
+                    <div class="tarjeta-producto" data-marca="gigabyte">
+                        <div class="badget-promo">Eco</div>
+                        <img src="https://static.gigabyte.com/StaticFile/Image/Global/5b993eb1f4fa3978a5e15061d9d71a67/ProductRemoveBg/33300.png" alt="Gigabyte B760M DS3H AX">
                         <div class="info">
                             <span class="marca">GIGABYTE</span>
-                            <h3>Gigabyte Z790 AORUS ELITE AX</h3>
-                            <p class="specs-tecnicas">Digital VRM | Disipación Avanzada</p>
-                            <p class="precio">269,99€</p>
+                            <h3>Gigabyte B760 GAMING X AX</h3>
+                            <p class="precio">165,00€</p>
                             <button class="btn-cesta">Añadir</button>
                         </div>
                     </div>
@@ -90,10 +108,52 @@
         </div>
 
         <footer class="main-footer">
-            <p>Copyright 2026. Página realizada por [Tu Nombre] para el módulo de LMSGI. Tu guía en <strong>hardware</strong>.</p>
+            <p>Copyright 2026. Página realizada para el módulo de LMSGI.</p>
         </footer>
     </div>
 
+    <script>
+        document.addEventListener('change', function() {
+            const seleccionados = Array.from(document.querySelectorAll('.filtro-marca:checked'))
+                                       .map(cb => cb.value.toLowerCase());
+            
+            const productos = document.querySelectorAll('.tarjeta-producto');
+
+            productos.forEach(producto => {
+                const marca = producto.getAttribute('data-marca').toLowerCase();
+                
+                if (seleccionados.length === 0 || seleccionados.includes(marca)) {
+                    producto.style.display = 'block'; 
+                } else {
+                    producto.style.display = 'none';
+                }
+            });
+        });
+    </script>
+
+    <script>
+    document.addEventListener('change', function() {
+        // 1. Capturamos qué casillas de fabricante están marcadas
+        const seleccionados = Array.from(document.querySelectorAll('.filtro-marca:checked'))
+                                   .map(cb => cb.value.toLowerCase());
+        
+        // 2. Localizamos todas las tarjetas de placas base
+        const productos = document.querySelectorAll('.tarjeta-producto');
+
+        productos.forEach(producto => {
+            // Leemos el atributo data-marca que pusimos en el HTML
+            const marca = producto.getAttribute('data-marca').toLowerCase();
+            
+            // 3. Lógica de filtrado:
+            // Si no hay marcas seleccionadas, mostramos todo.
+            // Si hay marcas seleccionadas, mostramos solo las que coincidan.
+            if (seleccionados.length === 0 || seleccionados.includes(marca)) {
+                producto.style.display = 'block'; 
+            } else {
+                producto.style.display = 'none';
+            }
+        });
+    });
+</script>
 </body>
 </html>
-
