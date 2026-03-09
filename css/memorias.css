@@ -15,6 +15,7 @@ body {
     margin: 0 auto;
     background-color: #fff;
     min-height: 100vh;
+    position: relative;
 }
 
 /* --- CABECERA --- */
@@ -25,7 +26,6 @@ body {
 
 .mini-header h1 { 
     color: #1f21c4; 
-    text-decoration: none;
 }
 
 .breadcrumb {
@@ -41,7 +41,6 @@ body {
     gap: 20px;
 }
 
-/* Filtros Laterales */
 .sidebar-filtros {
     flex: 1;
     border-right: 1px solid #eee;
@@ -49,22 +48,9 @@ body {
     min-width: 200px;
 }
 
-.filtro-grupo {
-    margin: 20px 0;
-}
-
-.filtro-grupo h4 {
-    margin-bottom: 10px;
-    font-size: 1rem;
-    color: #333;
-}
-
-.filtro-grupo label {
-    display: block;
-    margin: 8px 0;
-    font-size: 0.9rem;
-    cursor: pointer;
-}
+.filtro-grupo { margin: 20px 0; }
+.filtro-grupo h4 { margin-bottom: 10px; font-size: 1rem; color: #333; }
+.filtro-grupo label { display: block; margin: 8px 0; font-size: 0.9rem; cursor: pointer; }
 
 /* --- CATÁLOGO --- */
 .catalogo {
@@ -72,14 +58,6 @@ body {
     padding-left: 20px;
 }
 
-.header-catalogo {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
-}
-
-/* --- CUADRÍCULA DE PRODUCTOS --- */
 .grid-productos {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -95,27 +73,12 @@ body {
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     background: #fff;
 }
 
 .tarjeta-producto:hover {
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     transform: translateY(-5px);
-}
-
-/* Etiquetas (Novedad, TOP, etc.) */
-.badget {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background: #1f21c4;
-    color: #fff;
-    padding: 2px 8px;
-    font-size: 0.7rem;
-    font-weight: bold;
-    border-radius: 4px;
-    z-index: 10;
 }
 
 .tarjeta-producto img {
@@ -125,28 +88,6 @@ body {
     margin-bottom: 10px;
 }
 
-/* --- INFORMACIÓN DE PRODUCTO --- */
-.info {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.marca {
-    font-size: 0.75rem;
-    color: #888;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-.info h3 {
-    font-size: 0.95rem;
-    margin: 10px 0;
-    height: 45px;
-    overflow: hidden;
-    color: #333;
-}
-
 .precio {
     color: #1f21c4;
     font-size: 1.4rem;
@@ -154,7 +95,6 @@ body {
     margin: 10px 0;
 }
 
-/* --- BOTONES --- */
 .btn-cesta {
     width: 100%;
     background-color: #1f21c4;
@@ -164,63 +104,141 @@ body {
     border-radius: 4px;
     cursor: pointer;
     font-weight: bold;
-    transition: background-color 0.3s;
 }
 
-.btn-cesta:hover { 
-    background-color: #e55600; /* Naranja para el hover */
+.btn-cesta:hover { background-color: #e67e22; }
+
+/* --- ESTILOS DEL CARRITO --- */
+
+/* Icono flotante */
+#cart-icon-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #1f21c4;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    z-index: 1000;
+    transition: transform 0.2s;
 }
 
-/* --- FOOTER --- */
-.main-footer {
-    text-align: center;
-    padding: 25px;
-    border-top: 1px solid #eee;
-    margin-top: 40px;
-    font-size: 0.8rem;
-    color: #666;
+#cart-icon-float:hover { transform: scale(1.1); }
+
+#cart-count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #e67e22;
+    color: white;
+    font-size: 12px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    border: 2px solid white;
 }
 
-/* Clase extra para separar gamas */
-.titulo-seccion-gama {
+/* Sidebar del carrito */
+#cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -400px; /* Oculto por defecto */
+    width: 350px;
+    height: 100%;
+    background-color: white;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    z-index: 1001;
+    transition: 0.4s;
+    display: flex;
+    flex-direction: column;
+}
+
+#cart-sidebar.cart-active {
+    right: 0; /* Se desliza hacia adentro */
+}
+
+.cart-header {
+    padding: 20px;
+    background-color: #1f21c4;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-cerrar {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+#cart-items-container {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-item-info h4 {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.btn-eliminar {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.cart-footer {
+    padding: 20px;
+    border-top: 2px solid #eee;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.btn-finalizar {
     width: 100%;
-    margin: 30px 0 15px 0;
-    color: #1f21c4;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 5px;
-}
-
-/* Colores para las etiquetas (Badgets) */
-.badget-rgb {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background: linear-gradient(45deg, #ff0000, #ff00ff, #0000ff);
-    color: #fff;
-    padding: 2px 8px;
-    font-size: 0.7rem;
+    padding: 15px;
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 5px;
     font-weight: bold;
-    border-radius: 4px;
-    z-index: 5;
+    cursor: pointer;
 }
 
-.badget-promo {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background: #e67e22; /* Color naranja oferta */
-    color: #fff;
-    padding: 2px 8px;
-    font-size: 0.7rem;
-    font-weight: bold;
-    border-radius: 4px;
-    z-index: 5;
-}
+.btn-finalizar:hover { background-color: #219150; }
 
-/* Espaciado para las especificaciones técnicas */
-.specs-tecnicas {
-    font-size: 0.8rem;
-    color: #666;
-    margin: 5px 0;
-    font-style: italic;
+.cart-empty {
+    text-align: center;
+    color: #999;
+    margin-top: 50px;
 }

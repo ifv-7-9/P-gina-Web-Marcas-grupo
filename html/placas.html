@@ -8,6 +8,27 @@
 </head>
 <body>
 
+    <div id="cart-icon-top" onclick="toggleCart()">
+        🛒 <span id="cart-count">0</span>
+    </div>
+
+    <div id="carrito-panel">
+        <div class="carrito-header">
+            <h2>Mi Carrito</h2>
+            <button onclick="toggleCart()" style="background:none; border:none; color:white; font-size:1.5em; cursor:pointer;">&times;</button>
+        </div>
+        <div id="carrito-items">
+            <p style="text-align:center; color:#999; margin-top:20px;">El carrito está vacío</p>
+        </div>
+        <div class="carrito-footer">
+            <div style="display:flex; justify-content:space-between; margin-bottom:15px; font-weight:bold;">
+                <span>Total:</span>
+                <span id="total-precio">0,00€</span>
+            </div>
+            <button class="btn-pagar" onclick="alert('¡Gracias por tu compra!')">Finalizar Pedido</button>
+        </div>
+    </div>
+
     <div id="contenedor-global">
         <header class="mini-header">
             <div class="top-bar">
@@ -41,7 +62,7 @@
                 <div class="grid-productos">
                     <div class="tarjeta-producto" data-marca="asus" data-gama="premium">
                         <div class="badget-new">ROG</div>
-                        <img src="https://m.media-amazon.com/images/I/81cQQqzPcSL._AC_UF894,1000_QL80_.jpg" alt="ASUS ROG STRIX Z790-E GAMING WIFI">
+                        <img src="https://m.media-amazon.com/images/I/81cQQqzPcSL._AC_UF894,1000_QL80_.jpg" alt="ASUS ROG STRIX">
                         <div class="info">
                             <span class="marca">ASUS</span>
                             <h3>ASUS ROG STRIX Z790-E GAMING WIFI</h3>
@@ -51,7 +72,7 @@
                     </div>
 
                     <div class="tarjeta-producto" data-marca="msi" data-gama="premium">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9zGSklgx_IfvuYCf5_nV2fJZRZqmxHN8Tow&s" alt="MSI MPG Z790 EDGE WIFI">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9zGSklgx_IfvuYCf5_nV2fJZRZqmxHN8Tow&s" alt="MSI MPG">
                         <div class="info">
                             <span class="marca">MSI</span>
                             <h3>MSI MPG Z790 EDGE WIFI</h3>
@@ -61,7 +82,7 @@
                     </div>
 
                     <div class="tarjeta-producto" data-marca="gigabyte" data-gama="premium">
-                        <img src="https://cdn.idealo.com/folder/Product/202120/8/202120830/s11_produktbild_gross_1/gigabyte-z790-aorus-elite-ax.jpg" alt="Gigabyte Z790 AORUS ELITE AX">
+                        <img src="https://cdn.idealo.com/folder/Product/202120/8/202120830/s11_produktbild_gross_1/gigabyte-z790-aorus-elite-ax.jpg" alt="Gigabyte Z790">
                         <div class="info">
                             <span class="marca">GIGABYTE</span>
                             <h3>Gigabyte Z790 AORUS ELITE AX</h3>
@@ -74,7 +95,7 @@
                 <h3 style="margin: 40px 0 20px; color: #1f21c4;">Gama Media (Chipset B650/B760)</h3>
                 <div class="grid-productos">
                     <div class="tarjeta-producto" data-marca="asus">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCNxqBsZGsvgQ8iVhVRwDHjlPIGIwLzqSwIQ&s" alt="ASUS TUF GAMING B650-PLUS WIFI">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCNxqBsZGsvgQ8iVhVRwDHjlPIGIwLzqSwIQ&s" alt="ASUS TUF">
                         <div class="info">
                             <span class="marca">ASUS</span>
                             <h3>ASUS TUF GAMING B650-PLUS WIFI</h3>
@@ -84,7 +105,7 @@
                     </div>
 
                     <div class="tarjeta-producto" data-marca="msi">
-                        <img src="https://storage-asset.msi.com/global/picture/image/feature/mb/B650/MAG-B650-TOMAHAWK-WIFI/mag-b650-tomahawk-wifi.png" alt="MSI MAG B650 TOMAHAWK WIFI">
+                        <img src="https://storage-asset.msi.com/global/picture/image/feature/mb/B650/MAG-B650-TOMAHAWK-WIFI/mag-b650-tomahawk-wifi.png" alt="MSI MAG">
                         <div class="info">
                             <span class="marca">MSI</span>
                             <h3>MSI MAG B650 TOMAHAWK WIFI</h3>
@@ -95,7 +116,7 @@
 
                     <div class="tarjeta-producto" data-marca="gigabyte">
                         <div class="badget-promo">Eco</div>
-                        <img src="https://static.gigabyte.com/StaticFile/Image/Global/5b993eb1f4fa3978a5e15061d9d71a67/ProductRemoveBg/33300.png" alt="Gigabyte B760M DS3H AX">
+                        <img src="https://static.gigabyte.com/StaticFile/Image/Global/5b993eb1f4fa3978a5e15061d9d71a67/ProductRemoveBg/33300.png" alt="Gigabyte B760M">
                         <div class="info">
                             <span class="marca">GIGABYTE</span>
                             <h3>Gigabyte B760 GAMING X AX</h3>
@@ -113,50 +134,85 @@
     </div>
 
     <script>
-        // 1. Lógica de FILTROS DE MARCA
-        document.addEventListener('change', function() {
-            const seleccionados = Array.from(document.querySelectorAll('.filtro-marca:checked'))
-                                       .map(cb => cb.value.toLowerCase());
-            
-            const productos = document.querySelectorAll('.tarjeta-producto');
+        // --- LÓGICA DEL CARRITO Y FILTROS (JavaScript se mantiene aquí o en archivo .js) ---
+        let carrito = [];
 
-            productos.forEach(producto => {
-                const marca = producto.getAttribute('data-marca').toLowerCase();
-                
-                if (seleccionados.length === 0 || seleccionados.includes(marca)) {
-                    producto.style.display = 'block'; 
-                } else {
-                    producto.style.display = 'none';
-                }
+        function toggleCart() {
+            document.getElementById('carrito-panel').classList.toggle('visible');
+        }
+
+        function actualizarCarritoUI() {
+            const contenedor = document.getElementById('carrito-items');
+            const totalElt = document.getElementById('total-precio');
+            const countElt = document.getElementById('cart-count');
+            
+            contenedor.innerHTML = '';
+            let suma = 0;
+
+            if (carrito.length === 0) {
+                contenedor.innerHTML = '<p style="text-align:center; color:#999; margin-top:20px;">El carrito está vacío</p>';
+            } else {
+                carrito.forEach((item, index) => {
+                    suma += item.precio;
+                    contenedor.innerHTML += `
+                        <div class="item-carrito">
+                            <img src="${item.imagen}" alt="">
+                            <div style="flex:1">
+                                <p style="font-size:0.85em; font-weight:bold; margin:0;">${item.nombre}</p>
+                                <p style="margin:0; color:#1f21c4;">${item.precio.toFixed(2).replace('.', ',')}€</p>
+                            </div>
+                            <button onclick="quitarItem(${index})" style="background:none; border:none; cursor:pointer;">🗑️</button>
+                        </div>`;
+                });
+            }
+            totalElt.innerText = suma.toFixed(2).replace('.', ',') + '€';
+            countElt.innerText = carrito.length;
+        }
+
+        function quitarItem(index) {
+            carrito.splice(index, 1);
+            actualizarCarritoUI();
+        }
+
+        window.addEventListener('load', function() {
+            aplicarDescuentoPlacas();
+            document.querySelectorAll('.btn-cesta').forEach(boton => {
+                boton.addEventListener('click', (e) => {
+                    const tarjeta = e.target.closest('.tarjeta-producto');
+                    const nombre = tarjeta.querySelector('h3').innerText;
+                    const imagen = tarjeta.querySelector('img').src;
+                    const precioElt = tarjeta.querySelector('.precio');
+                    let precioTexto = precioElt.innerText;
+                    const spans = precioElt.querySelectorAll('span');
+                    if(spans.length > 0) precioTexto = spans[spans.length - 1].innerText;
+                    const precioNum = parseFloat(precioTexto.replace('€', '').replace('.', '').replace(',', '.'));
+                    carrito.push({ nombre, imagen, precio: precioNum });
+                    actualizarCarritoUI();
+                    if(!document.getElementById('carrito-panel').classList.contains('visible')) toggleCart();
+                });
             });
         });
 
-        // 2. Lógica de DESCUENTO PARA SOCIOS
-        function aplicarDescuentoPlacas() {
-            // Verifica si el usuario existe en el localStorage
-            const usuarioLogueado = localStorage.getItem('nombreUsuario');
-            
-            if (usuarioLogueado) {
-                // Selecciona solo las tarjetas con el atributo data-gama="premium"
-                const placasPremium = document.querySelectorAll('.tarjeta-producto[data-gama="premium"]');
+        document.addEventListener('change', function() {
+            const seleccionados = Array.from(document.querySelectorAll('.filtro-marca:checked')).map(cb => cb.value.toLowerCase());
+            document.querySelectorAll('.tarjeta-producto').forEach(p => {
+                const marca = p.getAttribute('data-marca').toLowerCase();
+                p.style.display = (seleccionados.length === 0 || seleccionados.includes(marca)) ? 'block' : 'none';
+            });
+        });
 
-                placasPremium.forEach(placa => {
+        function aplicarDescuentoPlacas() {
+            const usuarioLogueado = localStorage.getItem('nombreUsuario');
+            if (usuarioLogueado) {
+                document.querySelectorAll('.tarjeta-producto[data-gama="premium"]').forEach(placa => {
                     const elementoPrecio = placa.querySelector('.precio');
-                    
-                    // Convertir "489,00€" en número operable
                     let textoLimpio = elementoPrecio.innerText.replace('€', '').replace('.', '').replace(',', '.');
                     let precioOriginal = parseFloat(textoLimpio);
-                    
-                    // Aplicar 10% de descuento
                     let precioDescuento = precioOriginal * 0.90;
-
-                    // Actualizar el HTML con el diseño de oferta
                     elementoPrecio.innerHTML = `
                         <span style="text-decoration: line-through; color: #999; font-size: 0.85em;">${precioOriginal.toFixed(2).replace('.', ',')}€</span> 
                         <span style="color: #e67e22; font-weight: bold; margin-left: 8px;">${precioDescuento.toFixed(2).replace('.', ',')}€</span>
                     `;
-                    
-                    // Añadir etiqueta visual de socio
                     const infoDiv = placa.querySelector('.info');
                     if (!infoDiv.querySelector('.tag-socio')) {
                         const tagSocio = document.createElement('small');
@@ -170,9 +226,6 @@
                 });
             }
         }
-
-        // Ejecutar la función de descuento al cargar la página
-        window.addEventListener('load', aplicarDescuentoPlacas);
     </script>
 </body>
 </html>

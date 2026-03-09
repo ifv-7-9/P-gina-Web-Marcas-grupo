@@ -5,8 +5,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memorias RAM | BenchZone</title>
     <link rel="stylesheet" href="../css/memorias.css">
+    <style>
+        /* --- ESTILOS DEL CARRITO (SIDEBAR Y FLOTANTE) --- */
+        #cart-icon-float {
+            position: fixed; bottom: 30px; right: 30px;
+            background: #1f21c4; color: white; width: 60px; height: 60px;
+            border-radius: 50%; display: flex; justify-content: center;
+            align-items: center; font-size: 24px; cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 1000;
+        }
+        #cart-count {
+            position: absolute; top: 0; right: 0; background: #e67e22;
+            color: white; font-size: 12px; width: 22px; height: 22px;
+            border-radius: 50%; display: flex; justify-content: center;
+            align-items: center; font-weight: bold; border: 2px solid white;
+        }
+        #cart-sidebar {
+            position: fixed; top: 0; right: -400px; width: 350px; height: 100%;
+            background: white; box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            z-index: 1001; transition: 0.4s ease-in-out; display: flex; flex-direction: column;
+        }
+        #cart-sidebar.cart-active { right: 0; }
+        
+        .cart-header { padding: 20px; background: #1f21c4; color: white; display: flex; justify-content: space-between; align-items: center; }
+        #cart-items-container { flex: 1; padding: 20px; overflow-y: auto; }
+        
+        /* Estilos de los productos dentro del carrito */
+        .cart-item { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+            padding: 12px 0; 
+            border-bottom: 1px solid #eee; 
+        }
+        .cart-item-img { 
+            width: 55px; 
+            height: 55px; 
+            object-fit: contain; 
+            background: #f9f9f9; 
+            border-radius: 4px; 
+        }
+        .cart-item-info { flex: 1; }
+        .cart-item-name { display: block; font-weight: bold; font-size: 0.85rem; color: #333; margin-bottom: 2px; }
+        .cart-item-price { color: #1f21c4; font-size: 0.9rem; font-weight: bold; }
+        
+        .btn-remove { background: none; border: none; cursor: pointer; font-size: 1.1rem; filter: grayscale(1); transition: 0.2s; }
+        .btn-remove:hover { filter: grayscale(0); transform: scale(1.1); }
+
+        .cart-footer { padding: 20px; border-top: 2px solid #eee; background: #fafafa; }
+        .btn-finalizar { width: 100%; padding: 15px; background: #27ae60; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 1rem; }
+        .btn-finalizar:hover { background: #219150; }
+    </style>
 </head>
 <body>
+
+    <div id="cart-icon-float" onclick="toggleCart()">
+        <span id="cart-count">0</span>🛒
+    </div>
+
+    <div id="cart-sidebar">
+        <div class="cart-header">
+            <h2>Mi Carrito</h2>
+            <button onclick="toggleCart()" style="background:none; border:none; color:white; font-size:25px; cursor:pointer;">&times;</button>
+        </div>
+        <div id="cart-items-container">
+            </div>
+        <div class="cart-footer">
+            <div style="display:flex; justify-content:space-between; margin-bottom:15px; font-weight:bold; font-size:18px;">
+                <span>Total:</span>
+                <span id="cart-total-amount">0,00€</span>
+            </div>
+            <button class="btn-finalizar" onclick="alert('Pedido de RAM procesado con éxito')">Finalizar Compra</button>
+        </div>
+    </div>
 
     <div id="contenedor-global">
         <header class="mini-header">
@@ -45,10 +116,15 @@
                         <img src="https://img.pccomponentes.com/articles/1071/10711396/1323-corsair-vengeance-rgb-ddr5-6000mhz-pc5-48000-32gb-2x16gb-cl36-negro.jpg" alt="Corsair Vengeance RGB DDR5">
                         <div class="info">
                             <span class="marca">CORSAIR</span>
-                            <h3>Corsair Vengeance RGB DDR5 32GB 6000MHz</h3>
+                            <h3 class="prod-nombre">Corsair Vengeance RGB DDR5 32GB 6000MHz</h3>
                             <p class="specs-tecnicas">DDR5 | 6000 MHz | CL36</p>
+<<<<<<< HEAD
+                            <p class="precio">124,99€</p>
+                            <button class="btn-cesta" onclick="agregarAlCarrito(this)">Añadir</button>
+=======
                             <p class="precio">1204,99€</p>
                             <button class="btn-cesta">Añadir</button>
+>>>>>>> aa047503e2c0c7b200489c66b79614400da3e9b5
                         </div>
                     </div>
 
@@ -56,10 +132,15 @@
                         <img src="https://img.pccomponentes.com/articles/1063/10632981/1157-gskill-trident-z5-neo-rgb-ddr5-6000mhz-32gb-2x16gb-cl32.jpg" alt="G.Skill Trident Z5 Neo RGB DDR5">
                         <div class="info">
                             <span class="marca">G.SKILL</span>
-                            <h3>G.Skill Trident Z5 Neo RGB 32GB</h3>
+                            <h3 class="prod-nombre">G.Skill Trident Z5 Neo RGB 32GB</h3>
                             <p class="specs-tecnicas">DDR5 | AMD EXPO | CL30</p>
+<<<<<<< HEAD
+                            <p class="precio">132,00€</p>
+                            <button class="btn-cesta" onclick="agregarAlCarrito(this)">Añadir</button>
+=======
                             <p class="precio">1320,00€</p>
                             <button class="btn-cesta">Añadir</button>
+>>>>>>> aa047503e2c0c7b200489c66b79614400da3e9b5
                         </div>
                     </div>
                 </div>
@@ -71,10 +152,10 @@
                         <img src="https://img.pccomponentes.com/articles/43/432664/1392-kingston-fury-beast-ddr4-3200-mhz-16gb-2x8gb-cl16.jpg" alt="Kingston FURY Beast DDR4">
                         <div class="info">
                             <span class="marca">KINGSTON</span>
-                            <h3>Kingston FURY Beast DDR4 16GB 3200MHz</h3>
+                            <h3 class="prod-nombre">Kingston FURY Beast DDR4 16GB 3200MHz</h3>
                             <p class="specs-tecnicas">DDR4 | 3200 MHz | CL16</p>
                             <p class="precio">45,99€</p>
-                            <button class="btn-cesta">Añadir</button>
+                            <button class="btn-cesta" onclick="agregarAlCarrito(this)">Añadir</button>
                         </div>
                     </div>
 
@@ -82,22 +163,22 @@
                         <img src="https://assets.corsair.com/image/upload/c_pad,q_85,h_1100,w_1100,f_auto/products/Memory/CMK16GX4M2B3200C16/Gallery/VENG_LPX_BLK_00.webp" alt="Corsair Vengeance LPX DDR4">
                         <div class="info">
                             <span class="marca">CORSAIR</span>
-                            <h3>Corsair Vengeance LPX 16GB (2x8GB) 3200MHz</h3>
+                            <h3 class="prod-nombre">Corsair Vengeance LPX 16GB (2x8GB) 3200MHz</h3>
                             <p class="specs-tecnicas">DDR4 | Perfil Bajo | CL16</p>
                             <p class="precio">42,50€</p>
-                            <button class="btn-cesta">Añadir</button>
+                            <button class="btn-cesta" onclick="agregarAlCarrito(this)">Añadir</button>
                         </div>
                     </div>
 
                     <div class="tarjeta-producto" data-tipo="ddr4">
                         <div class="badget-promo">Eco</div>
-                        <img src="https://m.media-amazon.com/images/I/51idNDyR9gL._AC_UF894,1000_QL80_.jpg  " alt="Crucial Pro DDR4">
+                        <img src="https://m.media-amazon.com/images/I/51idNDyR9gL._AC_UF894,1000_QL80_.jpg" alt="Crucial Pro DDR4">
                         <div class="info">
                             <span class="marca">CRUCIAL</span>
-                            <h3>Crucial Pro DDR4 32GB (2x16GB) 3200MHz</h3>
+                            <h3 class="prod-nombre">Crucial Pro DDR4 32GB (2x16GB) 3200MHz</h3>
                             <p class="specs-tecnicas">DDR4 | Edición Pro | CL22</p>
                             <p class="precio">78,90€</p>
-                            <button class="btn-cesta">Añadir</button>
+                            <button class="btn-cesta" onclick="agregarAlCarrito(this)">Añadir</button>
                         </div>
                     </div>
                 </div>
@@ -110,64 +191,113 @@
     </div>
 
     <script>
-    // 1. Lógica de Filtros (Tipo de Memoria)
-    document.addEventListener('change', function() {
-        const seleccionados = Array.from(document.querySelectorAll('.filtro-tipo:checked'))
-                                   .map(cb => cb.value.toLowerCase());
-        
-        const productos = document.querySelectorAll('.tarjeta-producto');
+        // --- VARIABLES Y CARRITO ---
+        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
-        productos.forEach(producto => {
-            const tipo = producto.getAttribute('data-tipo').toLowerCase();
-            if (seleccionados.length === 0 || seleccionados.includes(tipo)) {
-                producto.style.display = 'block'; 
-            } else {
-                producto.style.display = 'none';
-            }
-        });
-    });
-
-    // 2. Lógica de Descuento para Socios
-    function aplicarDescuentoSocio() {
-        const usuarioLogueado = localStorage.getItem('nombreUsuario');
-        
-        if (usuarioLogueado) {
-            // Aplicamos descuento solo a las memorias DDR5 (Nueva Generación)
-            const productosDDR5 = document.querySelectorAll('.tarjeta-producto[data-tipo="ddr5"]');
-
-            productosDDR5.forEach(producto => {
-                const elementoPrecio = producto.querySelector('.precio');
-                
-                // Limpiar el texto del precio para operar (ej: "124,99€" -> 124.99)
-                let textoLimpio = elementoPrecio.innerText.replace('€', '').replace('.', '').replace(',', '.');
-                let precioOriginal = parseFloat(textoLimpio);
-                
-                // Cálculo del 10% de descuento
-                let precioDescuento = precioOriginal * 0.90;
-
-                // Actualizar el HTML con el precio tachado y el nuevo precio
-                elementoPrecio.innerHTML = `
-                    <span style="text-decoration: line-through; color: #999; font-size: 0.85em;">${precioOriginal.toFixed(2).replace('.', ',')}€</span> 
-                    <span style="color: #e67e22; font-weight: bold; margin-left: 8px;">${precioDescuento.toFixed(2).replace('.', ',')}€</span>
-                `;
-                
-                // Añadir etiqueta visual de oferta
-                const infoDiv = producto.querySelector('.info');
-                if (!infoDiv.querySelector('.tag-socio')) {
-                    const tagSocio = document.createElement('small');
-                    tagSocio.className = 'tag-socio';
-                    tagSocio.innerText = "¡Oferta Socio BenchZone!";
-                    tagSocio.style.color = "#27ae60";
-                    tagSocio.style.display = "block";
-                    tagSocio.style.fontWeight = "bold";
-                    infoDiv.insertBefore(tagSocio, elementoPrecio);
-                }
-            });
+        function toggleCart() {
+            document.getElementById('cart-sidebar').classList.toggle('cart-active');
         }
-    }
 
-    // Ejecutar cuando la página esté lista
-    window.addEventListener('load', aplicarDescuentoSocio);
-</script>
+        function agregarAlCarrito(boton) {
+            const tarjeta = boton.closest('.tarjeta-producto');
+            const nombre = tarjeta.querySelector('.prod-nombre').innerText;
+            const imagen = tarjeta.querySelector('img').src;
+            const precioContainer = tarjeta.querySelector('.precio');
+            
+            // Lógica para detectar el precio correcto (si hay descuento o no)
+            let precioTexto = precioContainer.querySelectorAll('span').length > 1 
+                ? precioContainer.querySelectorAll('span')[1].innerText 
+                : precioContainer.innerText;
+
+            const precio = parseFloat(precioTexto.replace('€', '').replace('.', '').replace(',', '.'));
+
+            carrito.push({ id: Date.now(), nombre, precio, imagen });
+            actualizarUI();
+            
+            if(!document.getElementById('cart-sidebar').classList.contains('cart-active')) toggleCart();
+        }
+
+        function eliminarDelCarrito(id) {
+            carrito = carrito.filter(item => item.id !== id);
+            actualizarUI();
+        }
+
+        function actualizarUI() {
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            const container = document.getElementById('cart-items-container');
+            const totalElem = document.getElementById('cart-total-amount');
+            const countElem = document.getElementById('cart-count');
+            
+            container.innerHTML = "";
+            let total = 0;
+
+            if (carrito.length === 0) {
+                container.innerHTML = '<p style="text-align:center; color:#999; margin-top:20px;">Tu carrito está vacío</p>';
+            } else {
+                carrito.forEach(item => {
+                    total += item.precio;
+                    container.innerHTML += `
+                        <div class="cart-item">
+                            <img src="${item.imagen}" class="cart-item-img">
+                            <div class="cart-item-info">
+                                <small class="cart-item-name">${item.nombre}</small>
+                                <span class="cart-item-price">${item.precio.toFixed(2).replace('.', ',')}€</span>
+                            </div>
+                            <button onclick="eliminarDelCarrito(${item.id})" class="btn-remove">🗑️</button>
+                        </div>
+                    `;
+                });
+            }
+            totalElem.innerText = `${total.toFixed(2).replace('.', ',')}€`;
+            countElem.innerText = carrito.length;
+        }
+
+        // --- FILTROS ---
+        document.querySelectorAll('.filtro-tipo').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const seleccionados = Array.from(document.querySelectorAll('.filtro-tipo:checked')).map(cb => cb.value.toLowerCase());
+                const productos = document.querySelectorAll('.tarjeta-producto');
+
+                productos.forEach(producto => {
+                    const tipo = producto.getAttribute('data-tipo').toLowerCase();
+                    producto.style.display = (seleccionados.length === 0 || seleccionados.includes(tipo)) ? 'block' : 'none';
+                });
+            });
+        });
+
+        // --- DESCUENTO SOCIOS ---
+        function aplicarDescuentoSocio() {
+            const usuarioLogueado = localStorage.getItem('nombreUsuario');
+            if (usuarioLogueado) {
+                const productosDDR5 = document.querySelectorAll('.tarjeta-producto[data-tipo="ddr5"]');
+                productosDDR5.forEach(producto => {
+                    const elementoPrecio = producto.querySelector('.precio');
+                    let textoLimpio = elementoPrecio.innerText.replace('€', '').replace('.', '').replace(',', '.');
+                    let precioOriginal = parseFloat(textoLimpio);
+                    let precioDescuento = precioOriginal * 0.90;
+
+                    elementoPrecio.innerHTML = `
+                        <span style="text-decoration: line-through; color: #999; font-size: 0.85em;">${precioOriginal.toFixed(2).replace('.', ',')}€</span> 
+                        <span style="color: #e67e22; font-weight: bold; margin-left: 8px;">${precioDescuento.toFixed(2).replace('.', ',')}€</span>
+                    `;
+                    
+                    const infoDiv = producto.querySelector('.info');
+                    if (!infoDiv.querySelector('.tag-socio')) {
+                        const tagSocio = document.createElement('small');
+                        tagSocio.className = 'tag-socio';
+                        tagSocio.innerText = "¡Oferta Socio BenchZone!";
+                        tagSocio.style.color = "#27ae60"; tagSocio.style.display = "block"; tagSocio.style.fontWeight = "bold";
+                        infoDiv.insertBefore(tagSocio, elementoPrecio);
+                    }
+                });
+            }
+        }
+
+        // Inicializar
+        window.addEventListener('load', () => {
+            aplicarDescuentoSocio();
+            actualizarUI();
+        });
+    </script>
 </body>
 </html>

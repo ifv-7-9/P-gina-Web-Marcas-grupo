@@ -150,3 +150,109 @@ body { background-color: #f4f4f4; }
     color: #1f21c4;
     border-bottom: 2px solid #eee;
 }
+
+* Icono Flotante */
+#cart-icon {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #1f21c4;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+#cart-count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #e55600;
+    font-size: 0.8rem;
+    padding: 3px 7px;
+    border-radius: 50%;
+}
+
+/* Panel del Carrito */
+#carrito-panel {
+    position: fixed;
+    top: 0;
+    right: -400px; /* Escondido */
+    width: 380px;
+    height: 100vh;
+    background: white;
+    box-shadow: -5px 0 25px rgba(0,0,0,0.1);
+    z-index: 1001;
+    transition: right 0.4s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+#carrito-panel.visible { right: 0; }
+
+.carrito-header {
+    padding: 20px;
+    background: #1f21c4;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-cerrar {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+#carrito-items {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.item-carrito {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.item-carrito img { width: 60px; height: 60px; object-fit: contain; }
+
+.item-info h4 { font-size: 0.9rem; margin-bottom: 5px; }
+
+.carrito-footer {
+    padding: 25px;
+    border-top: 2px solid #eee;
+}
+
+.total-contenedor {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.btn-pagar {
+    width: 100%;
+    padding: 15px;
+    background: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
