@@ -185,5 +185,98 @@
 
 // Ejecutar la función al cargar la página
 window.addEventListener('load', aplicarDescuentoUsuario);
+
+<div id="cart-icon" onclick="toggleCart()">
+    <span id="cart-count">0</span>
+    
+</div>
+
+<div id="carrito-panel" class="carrito-cerrado">
+    <div class="carrito-header">
+        <h2>Tu Cesta</h2>
+        <button onclick="toggleCart()" class="btn-cerrar">×</button>
+    </div>
+    <div id="carrito-items">
+        <p class="carrito-vacio">El carrito está vacío</p>
+    </div>
+    <div class="carrito-footer">
+        <div class="total-contenedor">
+            <span>Total:</span>
+            <span id="carrito-total">0,00€</span>
+        </div>
+        <button class="btn-pagar">Finalizar Compra</button>
+    </div>
+</div>
+
+<script>
+    let carrito = [];
+const carritoPanel = document.getElementById('carrito-panel');
+const carritoItemsContenedor = document.getElementById('carrito-items');
+const cartCount = document.getElementById('cart-count');
+const totalElemento = document.getElementById('carrito-total');
+
+// Alternar visibilidad del carrito
+function toggleCart() {
+    carritoPanel.classList.toggle('visible');
+}
+
+// Función para añadir al carrito
+document.querySelectorAll('.btn-cesta').forEach((boton, index) => {
+    boton.addEventListener('click', () => {
+        const tarjeta = boton.closest('.tarjeta-producto');
+        const nombre = tarjeta.querySelector('h3').innerText;
+        const imagen = tarjeta.querySelector('img').src;
+        
+        // Capturar el precio (si hay descuento, captura el nuevo precio)
+        const precioTexto = tarjeta.querySelector('.precio').innerText.split('\n').pop();
+        const precio = parseFloat(precioTexto.replace('€', '').replace('.', '').replace(',', '.'));
+
+        añadirAlCarrito(nombre, precio, imagen);
+        
+        // Abrir el carrito automáticamente al añadir
+        if (!carritoPanel.classList.contains('visible')) toggleCart();
+    });
+});
+
+function añadirAlCarrito(nombre, precio, imagen) {
+    carrito.push({ nombre, precio, imagen });
+    actualizarInterfaz();
+}
+
+function actualizarInterfaz() {
+    // Actualizar contador
+    cartCount.innerText = carrito.length;
+
+    // Limpiar contenedor
+    carritoItemsContenedor.innerHTML = '';
+
+    if (carrito.length === 0) {
+        carritoItemsContenedor.innerHTML = '<p class="carrito-vacio">El carrito está vacío</p>';
+    } else {
+        carrito.forEach((item, index) => {
+            const div = document.createElement('div');
+            div.className = 'item-carrito';
+            div.innerHTML = `
+                <img src="${item.imagen}" alt="${item.nombre}">
+                <div class="item-info">
+                    <h4>${item.nombre}</h4>
+                    <p>${item.precio.toFixed(2).replace('.', ',')}€</p>
+                </div>
+                <button onclick="eliminarDelCarrito(${index})" style="background:none; border:none; color:red; cursor:pointer;">🗑️</button>
+            `;
+            carritoItemsContenedor.appendChild(div);
+        });
+    }
+
+    // Calcular Total
+    const total = carrito.reduce((sum, item) => sum + item.precio, 0);
+    totalElemento.innerText = `${total.toFixed(2).replace('.', ',')}€`;
+}
+
+function eliminarDelCarrito(index) {
+    carrito.splice(index, 1);
+    actualizarInterfaz();
+}
+</script>
 </body>
 </html>

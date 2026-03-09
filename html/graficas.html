@@ -4,14 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tarjetas Gráficas | BenchZone</title>
-    <link rel="stylesheet" href="../css/procesadores.css"> </head>
+    <style>
+        /* --- ESTILOS BASE Y CARRITO --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #f4f4f4; }
+        
+        #contenedor-global { max-width: 1300px; margin: 0 auto; background: #fff; min-height: 100vh; }
+        .mini-header { padding: 20px; border-bottom: 3px solid #1f21c4; display: flex; justify-content: space-between; align-items: center; }
+        .cuerpo-flex { display: flex; padding: 20px; gap: 20px; }
+        
+        /* Sidebar y Grid */
+        .sidebar-filtros { flex: 1; border-right: 1px solid #eee; padding-right: 20px; min-width: 200px; }
+        .catalogo { flex: 4; padding-left: 20px; }
+        .grid-productos { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        
+        /* Tarjetas */
+        .tarjeta-producto { border: 1px solid #eee; border-radius: 8px; padding: 15px; position: relative; transition: 0.3s; background: #fff; display: flex; flex-direction: column; }
+        .tarjeta-producto:hover { box-shadow: 0 4px 15px rgba(0,0,0,0.1); transform: translateY(-5px); }
+        .tarjeta-producto img { width: 100%; height: 160px; object-fit: contain; margin-bottom: 10px; }
+        .precio { color: #1f21c4; font-size: 1.2rem; font-weight: bold; margin: 10px 0; }
+        .btn-cesta { width: 100%; background: #1f21c4; color: #fff; border: none; padding: 10px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .btn-cesta:hover { background: #e55600; }
+        .badget { position: absolute; top: 10px; left: 10px; background: #1f21c4; color: #fff; padding: 2px 8px; font-size: 0.7rem; border-radius: 4px; }
+
+        /* --- ESTILOS DEL CARRITO --- */
+        #cart-icon-top { cursor: pointer; font-size: 1.5rem; position: relative; }
+        #cart-count { position: absolute; top: -10px; right: -10px; background: #e55600; color: white; font-size: 0.7rem; padding: 2px 6px; border-radius: 50%; }
+
+        #carrito-panel { position: fixed; top: 0; right: -400px; width: 350px; height: 100vh; background: white; box-shadow: -5px 0 15px rgba(0,0,0,0.2); z-index: 1000; transition: 0.4s; display: flex; flex-direction: column; }
+        #carrito-panel.visible { right: 0; }
+        .carrito-header { padding: 20px; background: #1f21c4; color: white; display: flex; justify-content: space-between; align-items: center; }
+        #carrito-items { flex: 1; overflow-y: auto; padding: 20px; }
+        .item-carrito { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .item-carrito img { width: 50px; }
+        .carrito-footer { padding: 20px; border-top: 2px solid #eee; }
+        .btn-pagar { width: 100%; background: #27ae60; color: white; border: none; padding: 12px; border-radius: 5px; font-weight: bold; cursor: pointer; }
+    </style>
+</head>
 <body>
+
+    <div id="carrito-panel">
+        <div class="carrito-header">
+            <h2>Tu Cesta</h2>
+            <button onclick="toggleCart()" style="background:none; border:none; color:white; font-size:1.5rem; cursor:pointer;">×</button>
+        </div>
+        <div id="carrito-items">
+            <p style="text-align:center; color:#888;">El carrito está vacío</p>
+        </div>
+        <div class="carrito-footer">
+            <div style="display:flex; justify-content:space-between; margin-bottom:10px; font-weight:bold;">
+                <span>Total:</span>
+                <span id="carrito-total">0,00€</span>
+            </div>
+            <button class="btn-pagar">Finalizar Compra</button>
+        </div>
+    </div>
 
     <div id="contenedor-global">
         <header class="mini-header">
             <div class="top-bar">
                 <a href="index.html" style="text-decoration:none;"><h1>BenchZone</h1></a>
                 <div class="breadcrumb">Inicio > Componentes > <strong>Tarjetas Gráficas</strong></div>
+            </div>
+            <div id="cart-icon-top" onclick="toggleCart()">
+                🛒 <span id="cart-count">0</span>
             </div>
         </header>
 
@@ -26,9 +82,7 @@
             </aside>
 
             <main class="catalogo">
-                <div class="header-catalogo">
-                    <h2>Catálogo de Tarjetas Gráficas</h2>
-                </div>
+                <h2>Catálogo de Tarjetas Gráficas</h2>
 
                 <h3 style="margin: 20px 0; color: #1f21c4;">Gama Alta</h3>
                 <div class="grid-productos">
@@ -42,7 +96,6 @@
                             <button class="btn-cesta">Añadir al carrito</button>
                         </div>
                     </div>
-
                     <div class="tarjeta-producto" data-marca="amd" data-gama="alta">
                         <img src="https://m.media-amazon.com/images/I/81n9vllhNeL._AC_UF894,1000_QL80_.jpg" alt="RX 7900 XT">
                         <div class="info">
@@ -52,11 +105,21 @@
                             <button class="btn-cesta">Añadir al carrito</button>
                         </div>
                     </div>
+                    <div class="tarjeta-producto" data-marca="nvidia" data-gama="alta">
+                        <div class="badget">POWER</div>
+                        <img src="https://m.media-amazon.com/images/I/71uLe6XTV4L.jpg" alt="RTX 4080 Super">
+                        <div class="info">
+                            <span class="marca">NVIDIA</span>
+                            <h3>ASUS ROG Strix RTX 4080 Super</h3>
+                            <p class="precio">1249,00€</p>
+                            <button class="btn-cesta">Añadir al carrito</button>
+                        </div>
+                    </div>
                 </div>
 
                 <h3 style="margin: 40px 0 20px; color: #1f21c4;">Gama Estándar</h3>
                 <div class="grid-productos">
-                    <div class="tarjeta-producto" data-marca="nvidia">
+                    <div class="tarjeta-producto" data-marca="nvidia" data-gama="estandar">
                         <img src="https://static.gigabyte.com/StaticFile/Image/Global/06c06d425970eb82d8f379f1e8bb828b/ProductRemoveBg/35362.png" alt="RTX 4060">
                         <div class="info">
                             <span class="marca">NVIDIA</span>
@@ -65,25 +128,48 @@
                             <button class="btn-cesta">Añadir al carrito</button>
                         </div>
                     </div>
+                    <div class="tarjeta-producto" data-marca="amd" data-gama="estandar">
+                        <img src="https://img.pccomponentes.com/articles/1072/10726162/1289-sapphire-pulse-amd-radeon-rx-7600-gaming-8gb-gddr6.jpg" alt="RX 7600">
+                        <div class="info">
+                            <span class="marca">AMD</span>
+                            <h3>Sapphire Pulse Radeon RX 7600 8GB</h3>
+                            <p class="precio">299,00€</p>
+                            <button class="btn-cesta">Añadir al carrito</button>
+                        </div>
+                    </div>
+                    <div class="tarjeta-producto" data-marca="nvidia" data-gama="estandar">
+                        <img src="https://www.coolmod.com/images/product/large/PROD-030493_1.jpg" alt="RTX 4060 Solo">
+                        <div class="info">
+                            <span class="marca">NVIDIA</span>
+                            <h3>Zotac Gaming RTX 4060 Solo</h3>
+                            <p class="precio">315,50€</p>
+                            <button class="btn-cesta">Añadir al carrito</button>
+                        </div>
+                    </div>
                 </div>
             </main>
         </div>
 
-        <footer class="main-footer">
+        <footer class="main-footer" style="text-align: center; padding: 20px; color: #888; border-top: 1px solid #eee;">
             <p>Copyright 2026. Página realizada para el módulo de LMSGI.</p>
         </footer>
     </div>
 
     <script>
-        // Lógica unificada de filtros y descuentos
+        let carrito = [];
+
+        function toggleCart() {
+            document.getElementById('carrito-panel').classList.toggle('visible');
+        }
+
         function inicializar() {
-            // 1. Filtros
+            // 1. Lógica de Filtros
             document.addEventListener('change', function() {
                 const seleccionados = Array.from(document.querySelectorAll('.filtro-marca:checked')).map(cb => cb.value.toLowerCase());
                 const productos = document.querySelectorAll('.tarjeta-producto');
                 productos.forEach(p => {
                     const marca = p.getAttribute('data-marca').toLowerCase();
-                    p.style.display = (seleccionados.length === 0 || seleccionados.includes(marca)) ? 'block' : 'none';
+                    p.style.display = (seleccionados.length === 0 || seleccionados.includes(marca)) ? 'flex' : 'none';
                 });
             });
 
@@ -98,7 +184,56 @@
                     elPrecio.innerHTML = `<span style="text-decoration:line-through;color:gray;font-size:0.8em;">${valor.toFixed(2).replace('.', ',')}€</span> <span style="color:#e67e22;margin-left:8px;">${dto.toFixed(2).replace('.', ',')}€</span>`;
                 });
             }
+
+            // 3. Lógica del Carrito
+            document.querySelectorAll('.btn-cesta').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const tarjeta = e.target.closest('.tarjeta-producto');
+                    const nombre = tarjeta.querySelector('h3').innerText;
+                    const precioTexto = tarjeta.querySelector('.precio').innerText.split(' ').pop(); // Captura el precio con o sin descuento
+                    const imagen = tarjeta.querySelector('img').src;
+                    
+                    const producto = {
+                        nombre,
+                        precio: parseFloat(precioTexto.replace('€', '').replace('.', '').replace(',', '.')),
+                        imagen
+                    };
+                    
+                    carrito.push(producto);
+                    actualizarCarrito();
+                });
+            });
         }
+
+        function actualizarCarrito() {
+            const container = document.getElementById('carrito-items');
+            const totalElt = document.getElementById('carrito-total');
+            const countElt = document.getElementById('cart-count');
+            
+            container.innerHTML = '';
+            let total = 0;
+
+            carrito.forEach((prod, index) => {
+                total += prod.precio;
+                container.innerHTML += `
+                    <div class="item-carrito">
+                        <img src="${prod.imagen}" alt="thumb">
+                        <div>
+                            <p style="font-size:0.9rem; font-weight:bold;">${prod.nombre}</p>
+                            <p style="color:#1f21c4;">${prod.precio.toFixed(2).replace('.', ',')}€</p>
+                        </div>
+                    </div>
+                `;
+            });
+
+            countElt.innerText = carrito.length;
+            totalElt.innerText = `${total.toFixed(2).replace('.', ',')}€`;
+            
+            if(carrito.length > 0 && !document.getElementById('carrito-panel').classList.contains('visible')) {
+                toggleCart(); // Abre el carrito al añadir el primer producto
+            }
+        }
+
         window.onload = inicializar;
     </script>
 </body>
